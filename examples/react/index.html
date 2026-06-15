@@ -9,17 +9,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300&display=swap" rel="stylesheet" />
 
-  <link rel="icon" href="../assets/img/icon-light.svg" media="(prefers-color-scheme: light)" />
-  <link rel="icon" href="../assets/img/icon-dark.svg" media="(prefers-color-scheme: dark)" />
+  <link rel="icon" href="./assets/img/icon-light.svg" media="(prefers-color-scheme: light)" />
+  <link rel="icon" href="./assets/img/icon-dark.svg" media="(prefers-color-scheme: dark)" />
 
-  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <link rel="stylesheet" href="./assets/css/styles.css" />
 </head>
 <body>
   <header class="hero">
     <div class="container">
-      <img src="../assets/img/logo-dark.svg" alt="img-fit logo" class="logo" />
+      <img src="./assets/img/logo-dark.svg" alt="img-fit logo" class="logo" />
       <p class="tagline">
-        <img src="../assets/img/react.svg" alt="React" class="framework-logo" />
+        <img src="./assets/img/react.svg" alt="React" class="framework-logo" />
         React adapter for img-fwd
       </p>
       <div class="badges">
@@ -27,13 +27,192 @@
         <span class="badge">Zero Config</span>
       </div>
       <div class="cta-links">
-        <a href="../vanilla/index.html" class="btn btn-secondary">Vanilla Example</a>
-        <a href="../index.html" class="btn btn-secondary">All Examples</a>
+        <a href="./vanilla/index.html" class="btn btn-secondary">Vanilla Example</a>
+        <a href="./index.html" class="btn btn-secondary">All Examples</a>
       </div>
     </div>
   </header>
 
   <main>
+    <section class="section preview-section">
+      <div class="container">
+        <h2>Preview</h2>
+        <p class="section-desc">Resize your browser and watch each card request the best width for its container.</p>
+
+        <div class="preview-row preview-row-2">
+          <article class="file-card">
+            <div class="file-card-header">
+              <h3>Large card</h3>
+            </div>
+            <div class="file-preview">
+              <img
+                data-img-fit="https://img-fwd.driedel.dev/images/photo.jpg"
+                data-img-fit-alt="Coastal landscape"
+                alt="Coastal landscape"
+                loading="lazy"
+              />
+            </div>
+            <div class="file-sizes">
+              <div class="file-size-row">
+                <span class="file-label">Original</span>
+                <span class="file-value">4,813 KB</span>
+              </div>
+              <div class="file-size-row highlight">
+                <span class="file-label">img fit <code>(auto)</code></span>
+                <span class="file-value">25.5 KB</span>
+              </div>
+              <div class="file-size-row">
+                <span class="file-label">URL</span>
+                <code class="file-value url">-</code>
+              </div>
+            </div>
+          </article>
+
+          <article class="file-card">
+            <div class="file-card-header">
+              <h3>Large card</h3>
+            </div>
+            <div class="file-preview">
+              <img
+                data-img-fit="https://img-fwd.driedel.dev/images/portrait.jpg"
+                data-img-fit-alt="Portrait"
+                alt="Portrait"
+                loading="lazy"
+              />
+            </div>
+            <div class="file-sizes">
+              <div class="file-size-row">
+                <span class="file-label">Original</span>
+                <span class="file-value">3,379 KB</span>
+              </div>
+              <div class="file-size-row highlight">
+                <span class="file-label">img fit <code>(auto)</code></span>
+                <span class="file-value">8.9 KB</span>
+              </div>
+              <div class="file-size-row">
+                <span class="file-label">URL</span>
+                <code class="file-value url">-</code>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="preview-row preview-row-4">
+          <article class="file-card">
+            <div class="file-card-header">
+              <h3>Small</h3>
+            </div>
+            <div class="file-preview">
+              <img
+                data-img-fit="https://img-fwd.driedel.dev/images/photo.jpg"
+                data-img-fit-alt="Coastal landscape"
+                alt="Coastal landscape"
+                loading="lazy"
+              />
+            </div>
+            <div class="file-sizes">
+              <div class="file-size-row">
+                <span class="file-label">Original</span>
+                <span class="file-value">4,813 KB</span>
+              </div>
+              <div class="file-size-row highlight">
+                <span class="file-label">img fit <code>(auto)</code></span>
+                <span class="file-value">8.1 KB</span>
+              </div>
+              <div class="file-size-row">
+                <span class="file-label">URL</span>
+                <code class="file-value url">-</code>
+              </div>
+            </div>
+          </article>
+
+          <article class="file-card">
+            <div class="file-card-header">
+              <h3>Small</h3>
+            </div>
+            <div class="file-preview">
+              <img
+                data-img-fit="https://img-fwd.driedel.dev/images/portrait.jpg"
+                data-img-fit-alt="Portrait"
+                alt="Portrait"
+                loading="lazy"
+              />
+            </div>
+            <div class="file-sizes">
+              <div class="file-size-row">
+                <span class="file-label">Original</span>
+                <span class="file-value">3,379 KB</span>
+              </div>
+              <div class="file-size-row highlight">
+                <span class="file-label">img fit <code>(auto)</code></span>
+                <span class="file-value">3.9 KB</span>
+              </div>
+              <div class="file-size-row">
+                <span class="file-label">URL</span>
+                <code class="file-value url">-</code>
+              </div>
+            </div>
+          </article>
+
+          <article class="file-card">
+            <div class="file-card-header">
+              <h3>Small</h3>
+            </div>
+            <div class="file-preview">
+              <img
+                data-img-fit="https://img-fwd.driedel.dev/images/photo.jpg"
+                data-img-fit-alt="Coastal landscape"
+                alt="Coastal landscape"
+                loading="lazy"
+              />
+            </div>
+            <div class="file-sizes">
+              <div class="file-size-row">
+                <span class="file-label">Original</span>
+                <span class="file-value">4,813 KB</span>
+              </div>
+              <div class="file-size-row highlight">
+                <span class="file-label">img fit <code>(auto)</code></span>
+                <span class="file-value">8.1 KB</span>
+              </div>
+              <div class="file-size-row">
+                <span class="file-label">URL</span>
+                <code class="file-value url">-</code>
+              </div>
+            </div>
+          </article>
+
+          <article class="file-card">
+            <div class="file-card-header">
+              <h3>Small</h3>
+            </div>
+            <div class="file-preview">
+              <img
+                data-img-fit="https://img-fwd.driedel.dev/images/portrait.jpg"
+                data-img-fit-alt="Portrait"
+                alt="Portrait"
+                loading="lazy"
+              />
+            </div>
+            <div class="file-sizes">
+              <div class="file-size-row">
+                <span class="file-label">Original</span>
+                <span class="file-value">3,379 KB</span>
+              </div>
+              <div class="file-size-row highlight">
+                <span class="file-label">img fit <code>(auto)</code></span>
+                <span class="file-value">3.9 KB</span>
+              </div>
+              <div class="file-size-row">
+                <span class="file-label">URL</span>
+                <code class="file-value url">-</code>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="section">
       <div class="container">
         <h2>Usage</h2>
@@ -83,5 +262,29 @@ function App() {
       <p>Part of the <a href="https://img-fwd.driedel.dev/" target="_blank" rel="noopener">img-fwd</a> family.</p>
     </div>
   </footer>
+
+  <script type="module">
+    import ImgFit from './assets/js/img-fit.mjs';
+
+    ImgFit.init();
+
+    document.querySelectorAll('[data-img-fit]').forEach((element) => {
+      const valueCell = element.closest('.file-card')?.querySelector('.url');
+      if (!valueCell) return;
+
+      const updateLabel = () => {
+        const img = element.tagName === 'IMG' ? element : element.querySelector('img[data-img-fit-rendered]');
+        if (!img?.src) {
+          valueCell.textContent = '-';
+          return;
+        }
+        const url = new URL(img.src);
+        valueCell.textContent = url.pathname.slice(1) + url.search;
+      };
+
+      updateLabel();
+      new ResizeObserver(updateLabel).observe(element);
+    });
+  </script>
 </body>
 </html>
