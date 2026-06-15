@@ -18,7 +18,11 @@
     "README.md"
   ],
   "scripts": {
-    "test": "echo 'No tests yet'"
+    "test": "node --test test/*.test.js"
+  },
+  "devDependencies": {
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^24.1.0"
   },
   "keywords": [
     "img-fit",
@@ -35,6 +39,8 @@
     "vue": ">=3.0.0"
   },
   "dependencies": {
-    "img-fit": "^0.1.0"
+    "@vue/test-utils": "^2.4.11",
+    "img-fit": "^0.1.0",
+    "jsdom": "^29.1.1"
   }
 }

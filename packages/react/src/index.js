@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import ImgFit from 'img-fit';
+import ImgFitCore from 'img-fit';
 
 /**
  * React component that renders an optimized <img> for img-fwd.
@@ -26,10 +26,10 @@ export function ImgFit({ src, alt = '', params = '', options = {}, ...rest }) {
       element.removeAttribute('data-img-fit-params');
     }
 
-    ImgFit.watch(element, options);
+    ImgFitCore.watch(element, options);
 
     return () => {
-      ImgFit.unwatch(element);
+      ImgFitCore.unwatch(element);
     };
   }, [src, params, JSON.stringify(options)]);
 

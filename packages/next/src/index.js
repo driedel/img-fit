@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import NextImage from 'next/image.js';
-import ImgFit from 'img-fit';
+import ImgFitCore from 'img-fit';
 
 const Image = NextImage.default || NextImage;
 
@@ -31,7 +31,7 @@ export function ImgFitImage({ src, alt = '', params = '', options = {}, fill, ..
     }
 
     const updateSrc = () => {
-      setOptimizedSrc(ImgFit.buildUrl(element, { ...options, url: src }));
+      setOptimizedSrc(ImgFitCore.buildUrl(element, { ...options, url: src }));
     };
 
     updateSrc();

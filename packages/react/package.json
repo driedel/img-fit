@@ -18,7 +18,7 @@
     "README.md"
   ],
   "scripts": {
-    "test": "echo 'No tests yet'"
+    "test": "node --test test/*.test.js"
   },
   "keywords": [
     "img-fit",
@@ -36,5 +36,11 @@
   },
   "dependencies": {
     "img-fit": "^0.1.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^15.0.7",
+    "jsdom": "^29.1.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }

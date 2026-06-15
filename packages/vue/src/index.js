@@ -1,5 +1,5 @@
 import { h, ref, onMounted, onUnmounted } from 'vue';
-import ImgFit from 'img-fit';
+import ImgFitCore from 'img-fit';
 
 /**
  * Vue component that renders an optimized <img> for img-fwd.
@@ -33,9 +33,9 @@ export const ImgFit = {
         element.setAttribute('data-img-fit-params', props.params);
       }
 
-      ImgFit.watch(element, props.options);
+      ImgFitCore.watch(element, props.options);
       observer = new ResizeObserver(() => {
-        ImgFit.update(element, props.options);
+        ImgFitCore.update(element, props.options);
       });
       observer.observe(element);
     });
@@ -45,7 +45,7 @@ export const ImgFit = {
         observer.disconnect();
       }
       if (imgRef.value) {
-        ImgFit.unwatch(imgRef.value);
+        ImgFitCore.unwatch(imgRef.value);
       }
     });
 

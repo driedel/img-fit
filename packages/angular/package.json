@@ -18,7 +18,11 @@
   ],
   "scripts": {
     "build": "tsc",
-    "test": "echo 'No tests yet'"
+    "test": "tsc && node --import tsx --test test/*.test.ts"
+  },
+  "devDependencies": {
+    "@angular/core": "^17.0.0",
+    "typescript": "^5.0.0"
   },
   "keywords": [
     "img-fit",
@@ -34,10 +38,13 @@
     "@angular/core": ">=12.0.0"
   },
   "dependencies": {
-    "img-fit": "^0.1.0"
-  },
-  "devDependencies": {
-    "@angular/core": "^17.0.0",
-    "typescript": "^5.0.0"
+    "@angular/compiler": "^17.3.12",
+    "@angular/platform-browser": "^17.3.12",
+    "@angular/platform-browser-dynamic": "^17.3.12",
+    "img-fit": "^0.1.0",
+    "jsdom": "^29.1.1",
+    "reflect-metadata": "^0.2.2",
+    "tsx": "^4.22.4",
+    "zone.js": "^0.14.10"
   }
 }
