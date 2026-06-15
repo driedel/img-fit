@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>img-fit — Vue Example</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #0d1117; color: #e6edf3; padding: 2rem; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .card { background: #161b22; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; }
+    .card img { width: 100%; height: auto; display: block; }
+    .info { padding: 1rem; }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "vue": "https://esm.sh/vue@3",
+        "img-fit": "/packages/img-fit/src/index.mjs",
+        "@img-fit/vue": "/packages/vue/src/index.js"
+      }
+    }
+  </script>
+
+  <script type="module">
+    import { createApp, h } from 'vue';
+    import { ImgFit } from '@img-fit/vue';
+
+    createApp({
+      render() {
+        return h('div', { class: 'container' }, [
+          h('h1', null, 'img-fit + Vue'),
+          h('div', { class: 'card' }, [
+            h(ImgFit, {
+              src: 'https://img-fwd.driedel.dev/images/photo.jpg',
+              alt: 'Coastal landscape'
+            }),
+            h('div', { class: 'info' }, [
+              h('p', null, 'Resize the browser and check the Network tab.')
+            ])
+          ])
+        ]);
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>

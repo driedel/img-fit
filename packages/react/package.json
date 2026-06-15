@@ -1,0 +1,38 @@
+{
+  "name": "@img-fit/react",
+  "version": "0.1.0",
+  "description": "React adapter for img-fit — automatic width-aware images for img-fwd.",
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "require": "./src/index.js"
+    }
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "echo 'No tests yet'"
+  },
+  "keywords": [
+    "img-fit",
+    "img-fwd",
+    "react",
+    "image",
+    "responsive",
+    "optimization"
+  ],
+  "author": "Danilo Riedel",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "dependencies": {
+    "img-fit": "^0.1.0"
+  }
+}

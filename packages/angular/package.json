@@ -1,0 +1,43 @@
+{
+  "name": "@img-fit/angular",
+  "version": "0.1.0",
+  "description": "Angular adapter for img-fit — automatic width-aware images for img-fwd.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "echo 'No tests yet'"
+  },
+  "keywords": [
+    "img-fit",
+    "img-fwd",
+    "angular",
+    "image",
+    "responsive",
+    "optimization"
+  ],
+  "author": "Danilo Riedel",
+  "license": "MIT",
+  "peerDependencies": {
+    "@angular/core": ">=12.0.0"
+  },
+  "dependencies": {
+    "img-fit": "^0.1.0"
+  },
+  "devDependencies": {
+    "@angular/core": "^17.0.0",
+    "typescript": "^5.0.0"
+  }
+}

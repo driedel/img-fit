@@ -1,41 +1,26 @@
 {
-  "name": "img-fit",
+  "name": "img-fit-monorepo",
   "version": "0.1.0",
-  "description": "A vanilla JS companion for img-fwd that picks the optimal image width for any rendered container.",
-  "main": "./src/index.cjs",
-  "module": "./src/index.mjs",
-  "exports": {
-    ".": {
-      "import": "./src/index.mjs",
-      "require": "./src/index.cjs"
-    }
-  },
-  "type": "module",
-  "files": [
-    "src",
-    "README.md",
-    "LICENSE"
+  "private": true,
+  "description": "Monorepo for img-fit and its framework adapters.",
+  "workspaces": [
+    "packages/*"
   ],
   "scripts": {
-    "test": "node test/img-fit.test.js"
+    "test": "npm run test --workspace=img-fit",
+    "build:angular": "npm run build --workspace=@img-fit/angular"
   },
   "keywords": [
+    "img-fit",
+    "img-fwd",
     "image",
     "responsive",
-    "img-fwd",
-    "optimization",
-    "cdn",
-    "resize",
-    "vanilla-js"
+    "optimization"
   ],
   "author": "Danilo Riedel",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/driedel/img-fit.git"
-  },
-  "bugs": {
-    "url": "https://github.com/driedel/img-fit/issues"
-  },
-  "homepage": "https://github.com/driedel/img-fit#readme"
+  }
 }

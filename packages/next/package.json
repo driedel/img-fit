@@ -1,0 +1,40 @@
+{
+  "name": "@img-fit/next",
+  "version": "0.1.0",
+  "description": "Next.js adapter for img-fit — automatic width-aware images for img-fwd.",
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "require": "./src/index.js"
+    }
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "echo 'No tests yet'"
+  },
+  "keywords": [
+    "img-fit",
+    "img-fwd",
+    "next",
+    "nextjs",
+    "image",
+    "responsive",
+    "optimization"
+  ],
+  "author": "Danilo Riedel",
+  "license": "MIT",
+  "peerDependencies": {
+    "next": ">=12.0.0",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "dependencies": {
+    "img-fit": "^0.1.0"
+  }
+}
