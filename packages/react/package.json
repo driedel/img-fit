@@ -4,11 +4,13 @@
   "description": "React adapter for img-fit — automatic width-aware images for img-fwd.",
   "main": "./src/index.js",
   "module": "./src/index.js",
+  "types": "./src/index.d.ts",
   "type": "module",
   "exports": {
     ".": {
       "import": "./src/index.js",
-      "require": "./src/index.js"
+      "require": "./src/index.js",
+      "types": "./src/index.d.ts"
     }
   },
   "files": [

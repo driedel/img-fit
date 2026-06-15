@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
+import NextImage from 'next/image.js';
 import ImgFit from 'img-fit';
+
+const Image = NextImage.default || NextImage;
 
 /**
  * Next.js Image wrapper that renders an optimized img-fwd URL.

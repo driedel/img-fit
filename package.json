@@ -4,7 +4,8 @@
   "private": true,
   "description": "Monorepo for img-fit and its framework adapters.",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "examples/*"
   ],
   "scripts": {
     "test": "npm run test --workspace=img-fit",
