@@ -4,49 +4,84 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>img-fit — React Example</title>
-  <style>
-    body { font-family: system-ui, sans-serif; background: #0d1117; color: #e6edf3; padding: 2rem; }
-    .container { max-width: 900px; margin: 0 auto; }
-    .card { background: #161b22; border: 1px solid #30363d; border-radius: 12px; overflow: hidden; }
-    .card img { width: 100%; height: auto; display: block; }
-    .info { padding: 1rem; }
-  </style>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300&display=swap" rel="stylesheet" />
+
+  <link rel="icon" href="../assets/img/icon-light.svg" media="(prefers-color-scheme: light)" />
+  <link rel="icon" href="../assets/img/icon-dark.svg" media="(prefers-color-scheme: dark)" />
+
+  <link rel="stylesheet" href="../assets/css/styles.css" />
 </head>
 <body>
-  <div id="root"></div>
+  <header class="hero">
+    <div class="container">
+      <img src="../assets/img/logo-dark.svg" alt="img-fit logo" class="logo" />
+      <p class="tagline">
+        <img src="../assets/img/react.svg" alt="React" class="framework-logo" />
+        React adapter for img-fwd
+      </p>
+      <div class="badges">
+        <span class="badge">React</span>
+        <span class="badge">Zero Config</span>
+      </div>
+      <div class="cta-links">
+        <a href="../vanilla/index.html" class="btn btn-secondary">Vanilla Example</a>
+        <a href="../index.html" class="btn btn-secondary">All Examples</a>
+      </div>
+    </div>
+  </header>
 
-  <script type="importmap">
-    {
-      "imports": {
-        "react": "https://esm.sh/react@18",
-        "react-dom/client": "https://esm.sh/react-dom@18/client",
-        "img-fit": "/packages/img-fit/src/index.mjs",
-        "@img-fit/react": "/packages/react/src/index.js"
-      }
-    }
-  </script>
+  <main>
+    <section class="section">
+      <div class="container">
+        <h2>Usage</h2>
+        <p class="section-desc">Install the adapter and use the component anywhere in your React app.</p>
 
-  <script type="module">
-    import React from 'react';
-    import { createRoot } from 'react-dom/client';
-    import { ImgFit } from '@img-fit/react';
+        <div class="snippet-grid">
+          <div class="snippet-card">
+            <h3>Install</h3>
+            <pre class="code-block"><code>npm install @img-fit/react</code></pre>
+          </div>
 
-    function App() {
-      return React.createElement('div', { className: 'container' },
-        React.createElement('h1', null, 'img-fit + React'),
-        React.createElement('div', { className: 'card' },
-          React.createElement(ImgFit, {
-            src: 'https://img-fwd.driedel.dev/images/photo.jpg',
-            alt: 'Coastal landscape'
-          }),
-          React.createElement('div', { className: 'info' },
-            React.createElement('p', null, 'Resize the browser and check the Network tab.')
-          )
-        )
-      );
-    }
+          <div class="snippet-card">
+            <h3>Component</h3>
+            <pre class="code-block"><code>import { ImgFit } from '@img-fit/react';
 
-    createRoot(document.getElementById('root')).render(React.createElement(App));
-  </script>
+function App() {
+  return (
+    &lt;ImgFit
+      src="https://cdn.example.com/photo.jpg"
+      alt="Photo"
+      params="f=webp&q=80"
+    /&gt;
+  );
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="notes">
+          <h2>How it works</h2>
+          <ul>
+            <li>The component renders a regular <code>&lt;img&gt;</code> element.</li>
+            <li>On mount it measures the rendered container and computes the optimal width.</li>
+            <li>It appends <code>?rs=&lt;width&gt;</code> to the source URL automatically.</li>
+            <li>A <code>ResizeObserver</code> keeps the source in sync when the container resizes.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Part of the <a href="https://img-fwd.driedel.dev/" target="_blank" rel="noopener">img-fwd</a> family.</p>
+    </div>
+  </footer>
 </body>
 </html>

@@ -66,9 +66,19 @@ a:hover {
 }
 
 .tagline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
   font-size: 1.25rem;
   color: var(--text-secondary);
   margin-bottom: 32px;
+}
+
+.framework-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
 }
 
 .badges {
@@ -322,6 +332,41 @@ code {
   color: inherit;
   background: transparent;
   padding: 0;
+}
+
+/* Framework cards */
+.framework-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+
+.framework-card:hover {
+  text-decoration: none;
+}
+
+.framework-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: var(--bg-tertiary);
+  padding: 24px;
+}
+
+.framework-preview img {
+  max-width: 80px;
+  max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.framework-emoji {
+  font-size: 4rem;
+  line-height: 1;
 }
 
 /* Footer */

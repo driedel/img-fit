@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>img-fit — Vue Example</title>
+  <title>img-fit — Next.js Example</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,12 +19,12 @@
     <div class="container">
       <img src="../assets/img/logo-dark.svg" alt="img-fit logo" class="logo" />
       <p class="tagline">
-        <img src="../assets/img/vue.svg" alt="Vue" class="framework-logo" />
-        Vue adapter for img-fwd
+        <img src="../assets/img/next.svg" alt="Next.js" class="framework-logo" />
+        Next.js adapter for img-fwd
       </p>
       <div class="badges">
-        <span class="badge">Vue</span>
-        <span class="badge">Composition API</span>
+        <span class="badge">Next.js</span>
+        <span class="badge">next/image</span>
       </div>
       <div class="cta-links">
         <a href="../vanilla/index.html" class="btn btn-secondary">Vanilla Example</a>
@@ -37,27 +37,30 @@
     <section class="section">
       <div class="container">
         <h2>Usage</h2>
-        <p class="section-desc">Install the adapter and use the component in your Vue templates.</p>
+        <p class="section-desc">Install the adapter and wrap your images with the img-fit component.</p>
 
         <div class="snippet-grid">
           <div class="snippet-card">
             <h3>Install</h3>
-            <pre class="code-block"><code>npm install @img-fit/vue</code></pre>
+            <pre class="code-block"><code>npm install @img-fit/next</code></pre>
           </div>
 
           <div class="snippet-card">
             <h3>Component</h3>
-            <pre class="code-block"><code>&lt;script setup&gt;
-import { ImgFit } from '@img-fit/vue';
-&lt;/script&gt;
+            <pre class="code-block"><code>import { ImgFitImage } from '@img-fit/next';
 
-&lt;template&gt;
-  &lt;ImgFit
-    src="https://cdn.example.com/photo.jpg"
-    alt="Photo"
-    params="f=webp&q=80"
-  /&gt;
-&lt;/template&gt;</code></pre>
+export default function Page() {
+  return (
+    &lt;div style={{ position: 'relative', aspectRatio: '16 / 9' }}&gt;
+      &lt;ImgFitImage
+        src="https://cdn.example.com/photo.jpg"
+        alt="Photo"
+        params="f=webp&q=80"
+        fill
+      /&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
           </div>
         </div>
       </div>
@@ -68,10 +71,10 @@ import { ImgFit } from '@img-fit/vue';
         <div class="notes">
           <h2>How it works</h2>
           <ul>
-            <li>The component renders a native <code>&lt;img&gt;</code> element.</li>
-            <li>On mount it measures the rendered container and computes the optimal width.</li>
-            <li>It appends <code>?rs=&lt;width&gt;</code> to the source URL automatically.</li>
-            <li>A <code>ResizeObserver</code> keeps the source in sync when the container resizes.</li>
+            <li>The component wraps <code>next/image</code> using the <code>fill</code> prop.</li>
+            <li>On the client it measures the parent container and builds the optimal URL.</li>
+            <li>It appends <code>?rs=&lt;width&gt;</code> and passes the result to <code>next/image</code>.</li>
+            <li>SSR stays stable — the URL is updated after hydration.</li>
           </ul>
         </div>
       </div>
