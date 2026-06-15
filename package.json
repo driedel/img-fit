@@ -1,0 +1,41 @@
+{
+  "name": "img-fit",
+  "version": "0.1.0",
+  "description": "A vanilla JS companion for img-fwd that picks the optimal image width for any rendered container.",
+  "main": "./src/index.cjs",
+  "module": "./src/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./src/index.mjs",
+      "require": "./src/index.cjs"
+    }
+  },
+  "type": "module",
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node test/img-fit.test.js"
+  },
+  "keywords": [
+    "image",
+    "responsive",
+    "img-fwd",
+    "optimization",
+    "cdn",
+    "resize",
+    "vanilla-js"
+  ],
+  "author": "Danilo Riedel",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/driedel/img-fit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/driedel/img-fit/issues"
+  },
+  "homepage": "https://github.com/driedel/img-fit#readme"
+}
