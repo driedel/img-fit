@@ -32,29 +32,29 @@ jobs:
       # angular's test script already runs tsc, so dist/ exists after the step above.
       # For a clean build without running tests again, we rebuild here explicitly.
       - name: Build Angular adapter
-        run: npm run build --workspace=@img-fit/angular
+        run: npm run build --workspace=@danilo.riedel/img-fit-angular
 
       - name: Publish @danilo.riedel/img-fit
         run: npm publish --workspace=@danilo.riedel/img-fit --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish @img-fit/react
-        run: npm publish --workspace=@img-fit/react --access public --provenance
+      - name: Publish @danilo.riedel/img-fit-react
+        run: npm publish --workspace=@danilo.riedel/img-fit-react --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish @img-fit/next
-        run: npm publish --workspace=@img-fit/next --access public --provenance
+      - name: Publish @danilo.riedel/img-fit-next
+        run: npm publish --workspace=@danilo.riedel/img-fit-next --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish @img-fit/vue
-        run: npm publish --workspace=@img-fit/vue --access public --provenance
+      - name: Publish @danilo.riedel/img-fit-vue
+        run: npm publish --workspace=@danilo.riedel/img-fit-vue --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish @img-fit/angular
-        run: npm publish --workspace=@img-fit/angular --access public --provenance
+      - name: Publish @danilo.riedel/img-fit-angular
+        run: npm publish --workspace=@danilo.riedel/img-fit-angular --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
