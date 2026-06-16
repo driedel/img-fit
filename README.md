@@ -8,11 +8,11 @@ This repository is a monorepo containing the vanilla `img-fit` core and first-pa
 
 | Package | Description |
 |---|---|
-| [`img-fit`](./packages/img-fit) | Vanilla JavaScript core. |
-| [`@img-fit/react`](./packages/react) | React component adapter. |
-| [`@img-fit/next`](./packages/next) | Next.js `Image` wrapper. |
-| [`@img-fit/angular`](./packages/angular) | Angular directive. |
-| [`@img-fit/vue`](./packages/vue) | Vue component adapter. |
+| [`@danilo.riedel/img-fit`](./packages/img-fit) | Vanilla JavaScript core. |
+| [`@danilo.riedel/img-fit-react`](./packages/react) | React component adapter. |
+| [`@danilo.riedel/img-fit-next`](./packages/next) | Next.js `Image` wrapper. |
+| [`@danilo.riedel/img-fit-angular`](./packages/angular) | Angular directive. |
+| [`@danilo.riedel/img-fit-vue`](./packages/vue) | Vue component adapter. |
 
 ## Quick start
 
@@ -35,11 +35,11 @@ ImgFit.init();
 ### React
 
 ```bash
-npm install @img-fit/react
+npm install @danilo.riedel/img-fit-react
 ```
 
 ```jsx
-import { ImgFit } from '@img-fit/react';
+import { ImgFit } from '@danilo.riedel/img-fit-react';
 
 <ImgFit src="https://cdn.example.com/photo.jpg" alt="Photo" />
 ```
@@ -47,11 +47,11 @@ import { ImgFit } from '@img-fit/react';
 ### Next.js
 
 ```bash
-npm install @img-fit/next
+npm install @danilo.riedel/img-fit-next
 ```
 
 ```jsx
-import { ImgFitImage } from '@img-fit/next';
+import { ImgFitImage } from '@danilo.riedel/img-fit-next';
 
 <ImgFitImage src="https://cdn.example.com/photo.jpg" alt="Photo" fill />
 ```
@@ -59,7 +59,7 @@ import { ImgFitImage } from '@img-fit/next';
 ### Angular
 
 ```bash
-npm install @img-fit/angular
+npm install @danilo.riedel/img-fit-angular
 ```
 
 ```html
@@ -69,7 +69,7 @@ npm install @img-fit/angular
 ### Vue
 
 ```bash
-npm install @img-fit/vue
+npm install @danilo.riedel/img-fit-vue
 ```
 
 ```vue

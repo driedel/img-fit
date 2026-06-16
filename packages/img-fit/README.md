@@ -130,6 +130,10 @@ const url = ImgFit.buildUrl(hero);
 | `fallbackAttribute` | `string` | `'data-img-fit-fallback'` | Attribute that holds a fallback URL. |
 | `dpr` | `boolean` | `true` | Multiply the measured width by `window.devicePixelRatio`. |
 | `observeResize` | `boolean` | `true` | Update the image when the container resizes. |
+| `resizeDebounceMs` | `number` | `100` | Debounce delay for resize updates. |
+| `lazy` | `boolean` | `true` | Watch `loading="lazy"` images with `IntersectionObserver` and recompute before they load. |
+| `lazyRootMargin` | `string` | `'50px'` | Root margin for the lazy-load `IntersectionObserver`. |
+| `lazyThreshold` | `number` | `0` | Visibility threshold for the lazy-load `IntersectionObserver`. |
 
 ## Width snapping
 
@@ -159,6 +163,24 @@ Disable it if you prefer to save bandwidth:
 
 ```js
 ImgFit.init({ dpr: false });
+```
+
+## Lazy loading
+
+Images with `loading="lazy"` are tricky because the browser may not lay them out until they are close to the viewport. `img-fit` solves this by registering an `IntersectionObserver` for every lazy image. When the image is about to become visible, the URL is recomputed using the element's real rendered size, so the requested `?rs=` value is correct.
+
+```html
+<img
+  data-img-fit="https://cdn.example.com/photo.jpg"
+  loading="lazy"
+  alt="Photo"
+/>
+```
+
+You can disable this behavior per element or globally:
+
+```js
+ImgFit.init({ lazy: false });
 ```
 
 ## Integration with img-fwd
@@ -192,15 +214,16 @@ Then open the browser DevTools Network tab and resize the window. You will see e
 
 ## Framework support
 
-`img-fit` v1 is vanilla JavaScript so it works in any stack. Framework-specific adapters are planned for future releases:
+`img-fit` is vanilla JavaScript so it works in any stack. Framework-specific adapters are also available:
 
-- `@img-fit/react`
-- `@img-fit/next`
-- `@img-fit/angular`
+- `@danilo.riedel/img-fit-react`
+- `@danilo.riedel/img-fit-next`
+- `@danilo.riedel/img-fit-angular`
+- `@danilo.riedel/img-fit-vue`
 
 ## Browser support
 
-`img-fit` uses `ResizeObserver` when available and falls back to `window.resize` events. It works in all modern browsers. Internet Explorer is not supported.
+`img-fit` uses `ResizeObserver` and `IntersectionObserver` when available and falls back to `window.resize` events. It works in all modern browsers. Internet Explorer is not supported.
 
 ## License
 

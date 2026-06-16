@@ -1,18 +1,18 @@
-# @img-fit/vue
+# @danilo.riedel/img-fit-vue
 
 Vue 3 adapter for [img-fit](https://github.com/driedel/img-fit).
 
 ## Installation
 
 ```bash
-npm install @img-fit/vue
+npm install @danilo.riedel/img-fit-vue
 ```
 
 ## Usage
 
 ```vue
 <script setup>
-import { ImgFit } from '@img-fit/vue';
+import { ImgFit } from '@danilo.riedel/img-fit-vue';
 </script>
 
 <template>
@@ -39,3 +39,4 @@ All other attributes are forwarded to the underlying `<img>` element.
 
 - The component renders the original `src` during SSR and hydration.
 - The optimized `?rs=<width>` URL is applied on the client after the container is measured.
+- Pass `loading="lazy"` and the core will recompute the URL via `IntersectionObserver` before the image loads.

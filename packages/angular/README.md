@@ -1,11 +1,11 @@
-# @img-fit/angular
+# @danilo.riedel/img-fit-angular
 
 Angular adapter for [img-fit](https://github.com/driedel/img-fit).
 
 ## Installation
 
 ```bash
-npm install @img-fit/angular
+npm install @danilo.riedel/img-fit-angular
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ npm install @img-fit/angular
 Import the directive into your module or standalone component:
 
 ```ts
-import { ImgFitDirective } from '@img-fit/angular';
+import { ImgFitDirective } from '@danilo.riedel/img-fit-angular';
 
 @Component({
   standalone: true,
@@ -37,3 +37,4 @@ export class MyComponent {}
 
 - The directive renders the original `src` during SSR and hydration.
 - The optimized `?rs=<width>` URL is applied on the client after the container is measured.
+- Add `loading="lazy"` to the host element and the core will recompute the URL via `IntersectionObserver` before the image loads.

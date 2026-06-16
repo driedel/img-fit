@@ -8,10 +8,12 @@ const DEFAULT_OPTIONS = {
   paramsAttribute: 'data-img-fit-params',
   baseAttribute: 'data-img-fit-base',
   fallbackAttribute: 'data-img-fit-fallback',
-  fallbackSelector: 'body',
   dpr: true,
   observeResize: true,
-  resizeDebounceMs: 0
+  resizeDebounceMs: 100,
+  lazy: true,
+  lazyRootMargin: '50px',
+  lazyThreshold: 0
 };
 
 /**
@@ -121,6 +123,16 @@ function resolveAlt(element, options) {
 }
 
 /**
+ * Check whether an element is configured for native lazy loading.
+ *
+ * @param {Element} element
+ * @returns {boolean}
+ */
+function isLazyElement(element) {
+  return element.getAttribute('loading') === 'lazy';
+}
+
+/**
  * Apply the generated URL to the element.
  * If the element is an <img>, set src directly. Otherwise inject an <img> child.
  *
@@ -159,6 +171,10 @@ export class ImgFit {
     this.observers = new Map();
     /** @type {Map<Element, function>} */
     this.resizeHandlers = new Map();
+    /** @type {Map<Element, IntersectionObserver>} */
+    this.intersectionObservers = new Map();
+    /** @type {Map<Element, number>} */
+    this.debounceTimers = new Map();
   }
 
   /**
@@ -195,6 +211,36 @@ export class ImgFit {
   }
 
   /**
+   * Create a debounced update function for an element.
+   *
+   * @param {Element} element
+   * @param {object} options
+   * @returns {function}
+   * @private
+   */
+  _debouncedUpdate(element, options) {
+    const ms = Number(options.resizeDebounceMs) || 0;
+
+    if (ms <= 0) {
+      return () => this.update(element, options);
+    }
+
+    return () => {
+      const existing = this.debounceTimers.get(element);
+      if (existing) {
+        clearTimeout(existing);
+      }
+
+      const timer = setTimeout(() => {
+        this.update(element, options);
+        this.debounceTimers.delete(element);
+      }, ms);
+
+      this.debounceTimers.set(element, timer);
+    };
+  }
+
+  /**
    * Watch a single element and keep its image source optimized.
    *
    * @param {Element} element
@@ -207,26 +253,47 @@ export class ImgFit {
     }
 
     const opts = resolveOptions(options);
-    const target = resolveMeasurementTarget(element, opts);
 
     this.update(element, opts);
 
-    if (!opts.observeResize) {
-      return this;
-    }
-
     this.unwatch(element);
 
-    if (typeof ResizeObserver !== 'undefined' && target && target !== window) {
-      const observer = new ResizeObserver(() => {
-        this.update(element, opts);
-      });
-      observer.observe(target);
-      this.observers.set(element, observer);
-    } else {
-      const handler = () => this.update(element, opts);
-      window.addEventListener('resize', handler);
-      this.resizeHandlers.set(element, handler);
+    if (opts.observeResize) {
+      const debouncedUpdate = this._debouncedUpdate(element, opts);
+
+      if (typeof ResizeObserver !== 'undefined') {
+        const observer = new ResizeObserver(() => {
+          debouncedUpdate();
+        });
+        observer.observe(element);
+        this.observers.set(element, observer);
+      } else {
+        const handler = () => debouncedUpdate();
+        window.addEventListener('resize', handler);
+        this.resizeHandlers.set(element, handler);
+      }
+    }
+
+    if (opts.lazy !== false && isLazyElement(element)) {
+      if (typeof IntersectionObserver !== 'undefined') {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                this.update(element, opts);
+                observer.disconnect();
+                this.intersectionObservers.delete(element);
+              }
+            });
+          },
+          {
+            rootMargin: opts.lazyRootMargin,
+            threshold: opts.lazyThreshold
+          }
+        );
+        observer.observe(element);
+        this.intersectionObservers.set(element, observer);
+      }
     }
 
     return this;
@@ -249,6 +316,18 @@ export class ImgFit {
     if (handler) {
       window.removeEventListener('resize', handler);
       this.resizeHandlers.delete(element);
+    }
+
+    const intersectionObserver = this.intersectionObservers.get(element);
+    if (intersectionObserver) {
+      intersectionObserver.disconnect();
+      this.intersectionObservers.delete(element);
+    }
+
+    const timer = this.debounceTimers.get(element);
+    if (timer) {
+      clearTimeout(timer);
+      this.debounceTimers.delete(element);
     }
 
     return this;

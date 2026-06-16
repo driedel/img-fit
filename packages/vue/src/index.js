@@ -20,7 +20,6 @@ export const ImgFit = {
   },
   setup(props, { attrs }) {
     const imgRef = ref(null);
-    let observer = null;
 
     onMounted(() => {
       const element = imgRef.value;
@@ -34,16 +33,9 @@ export const ImgFit = {
       }
 
       ImgFitCore.watch(element, props.options);
-      observer = new ResizeObserver(() => {
-        ImgFitCore.update(element, props.options);
-      });
-      observer.observe(element);
     });
 
     onUnmounted(() => {
-      if (observer) {
-        observer.disconnect();
-      }
       if (imgRef.value) {
         ImgFitCore.unwatch(imgRef.value);
       }

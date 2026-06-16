@@ -9,8 +9,6 @@ export class ImgFitDirective implements OnInit, OnDestroy {
   @Input() imgFitParams: string = '';
   @Input() imgFitOptions: object = {};
 
-  private observer: ResizeObserver | null = null;
-
   constructor(private el: ElementRef<HTMLImageElement>) {}
 
   ngOnInit(): void {
@@ -25,17 +23,9 @@ export class ImgFitDirective implements OnInit, OnDestroy {
     }
 
     ImgFit.watch(element, this.imgFitOptions);
-
-    this.observer = new ResizeObserver(() => {
-      ImgFit.update(element, this.imgFitOptions);
-    });
-    this.observer.observe(element);
   }
 
   ngOnDestroy(): void {
-    if (this.observer) {
-      this.observer.disconnect();
-    }
     ImgFit.unwatch(this.el.nativeElement);
   }
 }

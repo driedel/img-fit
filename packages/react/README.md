@@ -1,17 +1,17 @@
-# @img-fit/react
+# @danilo.riedel/img-fit-react
 
 React adapter for [img-fit](https://github.com/driedel/img-fit).
 
 ## Installation
 
 ```bash
-npm install @img-fit/react
+npm install @danilo.riedel/img-fit-react
 ```
 
 ## Usage
 
 ```jsx
-import { ImgFit } from '@img-fit/react';
+import { ImgFit } from '@danilo.riedel/img-fit-react';
 
 function App() {
   return (
@@ -39,3 +39,4 @@ All other props are forwarded to the underlying `<img>` element.
 
 - The component renders the original `src` during SSR and hydration.
 - The optimized `?rs=<width>` URL is applied on the client after the container is measured.
+- Pass `loading="lazy"` and the core will recompute the URL via `IntersectionObserver` before the image loads.

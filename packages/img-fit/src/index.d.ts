@@ -5,10 +5,12 @@ export interface ImgFitOptions {
   paramsAttribute?: string;
   baseAttribute?: string;
   fallbackAttribute?: string;
-  fallbackSelector?: string;
   dpr?: boolean;
   observeResize?: boolean;
   resizeDebounceMs?: number;
+  lazy?: boolean;
+  lazyRootMargin?: string;
+  lazyThreshold?: number;
   url?: string;
 }
 

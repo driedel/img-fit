@@ -86,5 +86,226 @@ test('buildUrl width always wins over extra rs param', () => {
   );
 });
 
+// ImgFit class tests
+const observedElements = new Map();
+const intersectionCallbacks = new Map();
+let resizeCallbacks = [];
+let debounceTimers = [];
+
+class MockResizeObserver {
+  constructor(callback) {
+    this.callback = callback;
+    this.elements = new Set();
+    resizeCallbacks.push(callback);
+  }
+
+  observe(element) {
+    this.elements.add(element);
+    observedElements.set(element, this);
+  }
+
+  unobserve(element) {
+    this.elements.delete(element);
+    observedElements.delete(element);
+  }
+
+  disconnect() {
+    resizeCallbacks = resizeCallbacks.filter((cb) => cb !== this.callback);
+    this.elements.forEach((element) => {
+      observedElements.delete(element);
+    });
+    this.elements.clear();
+  }
+
+  static trigger(element) {
+    const observer = observedElements.get(element);
+    if (observer) {
+      observer.callback();
+    }
+  }
+}
+
+class MockIntersectionObserver {
+  constructor(callback, options) {
+    this.callback = callback;
+    this.options = options;
+    this.elements = new Set();
+  }
+
+  observe(element) {
+    this.elements.add(element);
+    intersectionCallbacks.set(element, this);
+  }
+
+  unobserve(element) {
+    this.elements.delete(element);
+    intersectionCallbacks.delete(element);
+  }
+
+  disconnect() {
+    this.elements.forEach((element) => {
+      intersectionCallbacks.delete(element);
+    });
+    this.elements.clear();
+  }
+
+  static trigger(element, isIntersecting = true) {
+    const observer = intersectionCallbacks.get(element);
+    if (observer) {
+      observer.callback([{ target: element, isIntersecting }]);
+    }
+  }
+}
+
+function createMockElement(tagName, width, attributes = {}) {
+  return {
+    nodeType: 1,
+    tagName,
+    _width: width,
+    _attrs: new Map(Object.entries(attributes)),
+    getAttribute(name) {
+      return this._attrs.get(name) || null;
+    },
+    setAttribute(name, value) {
+      this._attrs.set(name, value);
+    },
+    removeAttribute(name) {
+      this._attrs.delete(name);
+    },
+    getBoundingClientRect() {
+      return { width: this._width };
+    },
+    closest() {
+      return null;
+    },
+    parentElement: null,
+    appendChild(child) {
+      this._children = this._children || [];
+      this._children.push(child);
+    },
+    querySelector() {
+      return null;
+    }
+  };
+}
+
+globalThis.window = {
+  innerWidth: 1024,
+  devicePixelRatio: 1,
+  location: { href: 'http://localhost' },
+  addEventListener() {},
+  removeEventListener() {}
+};
+globalThis.document = {
+  body: createMockElement('BODY', 1024),
+  createElement(tagName) {
+    return createMockElement(tagName.toUpperCase(), 0);
+  }
+};
+globalThis.Node = { ELEMENT_NODE: 1 };
+globalThis.ResizeObserver = MockResizeObserver;
+globalThis.IntersectionObserver = MockIntersectionObserver;
+globalThis.setTimeout = (fn, ms) => {
+  const id = { fn, ms };
+  debounceTimers.push(id);
+  return id;
+};
+globalThis.clearTimeout = (id) => {
+  debounceTimers = debounceTimers.filter((timer) => timer !== id);
+};
+
+const { ImgFit } = await import('../src/img-fit.js');
+
+test('ImgFit.update applies src with rs param', () => {
+  const element = createMockElement('IMG', 400, {
+    'data-img-fit': 'https://cdn.example.com/photo.jpg'
+  });
+  const imgFit = new ImgFit();
+  imgFit.update(element);
+
+  assert.ok(element.src);
+  assert.ok(element.src.includes('rs=400'));
+});
+
+test('ImgFit.watch observes element with ResizeObserver', () => {
+  const element = createMockElement('IMG', 300, {
+    'data-img-fit': 'https://cdn.example.com/photo.jpg'
+  });
+  const imgFit = new ImgFit();
+  imgFit.watch(element);
+
+  assert.ok(observedElements.has(element));
+});
+
+test('ImgFit.watch with loading=lazy creates IntersectionObserver', () => {
+  const element = createMockElement('IMG', 0, {
+    'data-img-fit': 'https://cdn.example.com/photo.jpg',
+    loading: 'lazy'
+  });
+  const imgFit = new ImgFit();
+  imgFit.watch(element);
+
+  assert.ok(intersectionCallbacks.has(element));
+});
+
+test('IntersectionObserver updates src when lazy element becomes visible', () => {
+  const element = createMockElement('IMG', 0, {
+    'data-img-fit': 'https://cdn.example.com/photo.jpg',
+    loading: 'lazy'
+  });
+  const imgFit = new ImgFit();
+  imgFit.watch(element);
+
+  element._width = 500;
+  MockIntersectionObserver.trigger(element, true);
+
+  assert.ok(element.src);
+  assert.ok(element.src.includes('rs=500'));
+});
+
+test('ResizeObserver updates src when element resizes', () => {
+  const element = createMockElement('IMG', 300, {
+    'data-img-fit': 'https://cdn.example.com/photo.jpg'
+  });
+  const imgFit = new ImgFit();
+  imgFit.watch(element, { resizeDebounceMs: 0 });
+
+  element._width = 600;
+  MockResizeObserver.trigger(element);
+
+  assert.ok(element.src.includes('rs=600'));
+});
+
+test('resizeDebounceMs delays src update', () => {
+  const element = createMockElement('IMG', 300, {
+    'data-img-fit': 'https://cdn.example.com/photo.jpg'
+  });
+  const imgFit = new ImgFit();
+  imgFit.watch(element, { resizeDebounceMs: 100 });
+
+  element._width = 600;
+  MockResizeObserver.trigger(element);
+
+  assert.strictEqual(element.src.includes('rs=600'), false);
+  assert.strictEqual(debounceTimers.length, 1);
+});
+
+test('ImgFit.unwatch disconnects observers', () => {
+  const element = createMockElement('IMG', 300, {
+    'data-img-fit': 'https://cdn.example.com/photo.jpg',
+    loading: 'lazy'
+  });
+  const imgFit = new ImgFit();
+  imgFit.watch(element);
+
+  assert.ok(observedElements.has(element));
+  assert.ok(intersectionCallbacks.has(element));
+
+  imgFit.unwatch(element);
+
+  assert.strictEqual(observedElements.has(element), false);
+  assert.strictEqual(intersectionCallbacks.has(element), false);
+});
+
 console.log('');
 console.log('All tests completed.');

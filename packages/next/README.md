@@ -1,17 +1,17 @@
-# @img-fit/next
+# @danilo.riedel/img-fit-next
 
 Next.js adapter for [img-fit](https://github.com/driedel/img-fit).
 
 ## Installation
 
 ```bash
-npm install @img-fit/next
+npm install @danilo.riedel/img-fit-next
 ```
 
 ## Usage
 
 ```jsx
-import { ImgFitImage } from '@img-fit/next';
+import { ImgFitImage } from '@danilo.riedel/img-fit-next';
 
 function App() {
   return (
@@ -43,3 +43,5 @@ All other props are forwarded to `next/image`.
 - The component renders the original `src` during SSR and hydration.
 - The optimized `?rs=<width>` URL is applied on the client after the container is measured.
 - The component wraps `next/image` with a `position: relative` container.
+- When using `fill`, the parent element must have explicit dimensions. Lazy images are recomputed via `IntersectionObserver` before they load.
+- When not using `fill`, pass explicit `width` and `height` so the adapter can compute `?rs=` without measuring the DOM.

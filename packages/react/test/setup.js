@@ -24,3 +24,9 @@ setGlobal('ResizeObserver', class ResizeObserver {
   unobserve() {}
   disconnect() {}
 });
+
+setGlobal('IntersectionObserver', class IntersectionObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+});
