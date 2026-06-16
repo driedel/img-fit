@@ -1,18 +1,9 @@
 import './setup.js';
-import { describe, it, before } from 'node:test';
+import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import React from 'react';
 import { render } from '@testing-library/react';
 import { ImgFitImage } from '../src/index.js';
-
-before(() => {
-  // Mock next/image so tests do not need a Next.js build context.
-  // eslint-disable-next-line no-underscore-dangle
-  if (!globalThis.__NEXT_IMAGE_MOCKED) {
-    // eslint-disable-next-line no-underscore-dangle
-    globalThis.__NEXT_IMAGE_MOCKED = true;
-  }
-});
 
 describe('ImgFitImage Next.js component', () => {
   it('renders a wrapper containing an img', () => {
@@ -21,7 +12,8 @@ describe('ImgFitImage Next.js component', () => {
         src: 'https://cdn.example.com/photo.jpg',
         alt: 'Photo',
         width: 400,
-        height: 300
+        height: 300,
+        unoptimized: true
       })
     );
     const wrapper = container.firstChild;

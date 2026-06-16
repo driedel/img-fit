@@ -1,6 +1,6 @@
 {
   "name": "@img-fit/react",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "React adapter for img-fit — automatic width-aware images for img-fwd.",
   "main": "./src/index.js",
   "module": "./src/index.js",
