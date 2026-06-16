@@ -1,6 +1,6 @@
 {
   "name": "@danilo.riedel/img-fit-react",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "React adapter for img-fit — automatic width-aware images for img-fwd.",
   "main": "./src/index.js",
   "module": "./src/index.js",
@@ -33,6 +33,11 @@
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/driedel/img-fit.git",
+    "directory": "packages/react"
   },
   "publishConfig": {
     "access": "public"

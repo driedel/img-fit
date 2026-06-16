@@ -1,6 +1,6 @@
 {
   "name": "@danilo.riedel/img-fit-angular",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Angular adapter for img-fit — automatic width-aware images for img-fwd.",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -36,6 +36,11 @@
   "license": "MIT",
   "peerDependencies": {
     "@angular/core": ">=12.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/driedel/img-fit.git",
+    "directory": "packages/angular"
   },
   "publishConfig": {
     "access": "public"
