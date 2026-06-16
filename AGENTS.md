@@ -114,6 +114,16 @@ All packages live under the `@danilo.riedel` scope (matches the npm account user
 
 If you add a new adapter, use the same `@danilo.riedel/img-fit-<framework>` pattern and add a publish step to `.github/workflows/publish.yml`.
 
+Every adapter `package.json` must have a `repository` field pointing to the monorepo root with the correct `directory`. Without it, npm provenance validation will reject the publish with `E422`. Example:
+
+```json
+"repository": {
+  "type": "git",
+  "url": "https://github.com/driedel/img-fit.git",
+  "directory": "packages/<framework>"
+}
+```
+
 ---
 
 ## Known limitations
