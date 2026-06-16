@@ -1,6 +1,6 @@
 {
   "name": "@img-fit/vue",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Vue adapter for img-fit — automatic width-aware images for img-fwd.",
   "main": "./src/index.js",
   "module": "./src/index.js",
@@ -37,6 +37,9 @@
   "license": "MIT",
   "peerDependencies": {
     "vue": ">=3.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "@vue/test-utils": "^2.4.11",

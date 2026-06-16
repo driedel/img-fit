@@ -1,6 +1,6 @@
 {
   "name": "@img-fit/next",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Next.js adapter for img-fit — automatic width-aware images for img-fwd.",
   "main": "./src/index.js",
   "module": "./src/index.js",
@@ -42,6 +42,9 @@
     "next": ">=12.0.0",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "dependencies": {
     "img-fit": "^0.1.0"
