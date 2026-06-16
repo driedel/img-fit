@@ -1,6 +1,6 @@
 {
   "name": "img-fit-monorepo",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": true,
   "description": "Monorepo for img-fit and its framework adapters.",
   "workspaces": [
@@ -21,6 +21,6 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/driedel/img-fit.git"
+    "url": "git+https://github.com/driedel/img-fit.git"
   }
 }
