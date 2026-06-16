@@ -44,7 +44,9 @@ function resolveMeasurementTarget(element, options) {
     }
   }
 
-  if (element.getBoundingClientRect().width > 0) {
+  // For <img> elements, measure the parent container — not the element itself.
+  // The img's intrinsic dimensions (from the loaded file) must not influence the measurement.
+  if (element.tagName !== 'IMG' && element.getBoundingClientRect().width > 0) {
     return element;
   }
 
