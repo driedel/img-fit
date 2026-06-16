@@ -42,6 +42,80 @@ pgx para v5.7.2`). Tipos comuns: `feat`, `fix`, `chore`, `refactor`, `docs`, `te
 - Add or update tests for any new pure utility function in the core.
 - If you add or change an adapter, update its README and the root README table.
 
+## Release checklist
+
+Follow every step in order before creating a git tag. A tag triggers the GitHub Actions publish pipeline — if any step is skipped, the CI will fail and a wasted patch version will be burned.
+
+### 1. Bump versions
+
+Bump the `version` field in **all six** `package.json` files to the same value:
+
+```
+package.json                        (monorepo root)
+packages/img-fit/package.json
+packages/react/package.json
+packages/next/package.json
+packages/vue/package.json
+packages/angular/package.json
+```
+
+### 2. Update the lock file
+
+After changing any package name or version, always regenerate the lock file:
+
+```bash
+npm install
+```
+
+Commit the updated `package-lock.json` together with the version bumps. If the lock file is not in sync, `npm ci` will fail in CI.
+
+### 3. Run tests locally
+
+```bash
+npm test
+```
+
+All packages must pass before creating a tag. Fix any failures first.
+
+### 4. Commit
+
+```bash
+git add -A
+git commit -m "chore: bump versions to X.Y.Z"
+git push origin main
+```
+
+### 5. Create and push the tag
+
+```bash
+git tag -a vX.Y.Z -m "Release vX.Y.Z - <short description>"
+git push origin vX.Y.Z
+```
+
+The tag push triggers `.github/workflows/publish.yml`, which runs tests, builds the Angular adapter, and publishes all five packages to npm.
+
+### 6. Monitor CI
+
+Check https://github.com/driedel/img-fit/actions to confirm the workflow succeeds.
+
+---
+
+## Package names on npm
+
+All packages live under the `@danilo.riedel` scope (matches the npm account username). The `@img-fit` scope and the unscoped `img-fit` name are **not available**.
+
+| Workspace path | npm package name |
+|---|---|
+| `packages/img-fit` | `@danilo.riedel/img-fit` |
+| `packages/react` | `@danilo.riedel/img-fit-react` |
+| `packages/next` | `@danilo.riedel/img-fit-next` |
+| `packages/vue` | `@danilo.riedel/img-fit-vue` |
+| `packages/angular` | `@danilo.riedel/img-fit-angular` |
+
+If you add a new adapter, use the same `@danilo.riedel/img-fit-<framework>` pattern and add a publish step to `.github/workflows/publish.yml`.
+
+---
+
 ## Known limitations
 
 - `packages/img-fit/src/index.cjs` duplicates the ESM logic manually. There is no build step for the core.
