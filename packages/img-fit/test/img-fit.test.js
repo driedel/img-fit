@@ -158,7 +158,7 @@ class MockIntersectionObserver {
 }
 
 function createMockElement(tagName, width, attributes = {}) {
-  return {
+  const element = {
     nodeType: 1,
     tagName,
     _width: width,
@@ -187,6 +187,18 @@ function createMockElement(tagName, width, attributes = {}) {
       return null;
     }
   };
+
+  // <img> elements are never self-measured; resolveMeasurementTarget walks up to
+  // the parent container. Give mock imgs a parent whose width mirrors _width so
+  // that setting element._width in tests still drives the correct ?rs= value.
+  if (tagName === 'IMG') {
+    element.parentElement = {
+      getBoundingClientRect() { return { width: element._width }; },
+      parentElement: null,
+    };
+  }
+
+  return element;
 }
 
 globalThis.window = {
