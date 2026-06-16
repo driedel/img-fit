@@ -4,6 +4,7 @@
   <img src="examples/assets/img/logo-light.svg" width="300" alt="IMG FIT">
 </picture>
 
+- - -
 
 A tiny, dependency-free JavaScript library that picks the optimal image width for any rendered container and appends it to an [img-fwd](https://img-fwd.driedel.dev/) URL.
 
