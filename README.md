@@ -8,11 +8,11 @@ This repository is a monorepo containing the vanilla `img-fit` core and first-pa
 
 | Package | Description |
 |---|---|
-| [`@danilo.riedel/img-fit`](./packages/img-fit) | Vanilla JavaScript core. |
-| [`@danilo.riedel/img-fit-react`](./packages/react) | React component adapter. |
-| [`@danilo.riedel/img-fit-next`](./packages/next) | Next.js `Image` wrapper. |
-| [`@danilo.riedel/img-fit-angular`](./packages/angular) | Angular directive. |
-| [`@danilo.riedel/img-fit-vue`](./packages/vue) | Vue component adapter. |
+| [`@danilo.riedel/img-fit`](https://www.npmjs.com/package/@danilo.riedel/img-fit) | Vanilla JavaScript core. |
+| [`@danilo.riedel/img-fit-react`](https://www.npmjs.com/package/@danilo.riedel/img-fit-react) | React component adapter. |
+| [`@danilo.riedel/img-fit-next`](https://www.npmjs.com/package/@danilo.riedel/img-fit-next) | Next.js `Image` wrapper. |
+| [`@danilo.riedel/img-fit-angular`](https://www.npmjs.com/package/@danilo.riedel/img-fit-angular) | Angular directive. |
+| [`@danilo.riedel/img-fit-vue`](https://www.npmjs.com/package/@danilo.riedel/img-fit-vue) | Vue component adapter. |
 
 ## Quick start
 
