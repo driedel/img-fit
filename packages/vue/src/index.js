@@ -1,5 +1,5 @@
 import { h, ref, onMounted, onUnmounted } from 'vue';
-import ImgFitCore from 'img-fit';
+import ImgFitCore from '@danilo.riedel/img-fit';
 
 /**
  * Vue component that renders an optimized <img> for img-fwd.

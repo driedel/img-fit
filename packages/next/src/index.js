@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import NextImage from 'next/image.js';
-import ImgFitCore from 'img-fit';
+import ImgFitCore from '@danilo.riedel/img-fit';
 
 const Image = NextImage.default || NextImage;
 

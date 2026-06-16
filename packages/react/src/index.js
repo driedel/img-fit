@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import ImgFitCore from 'img-fit';
+import ImgFitCore from '@danilo.riedel/img-fit';
 
 /**
  * React component that renders an optimized <img> for img-fwd.

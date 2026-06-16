@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
-import ImgFit from 'img-fit';
+import ImgFit from '@danilo.riedel/img-fit';
 
 @Directive({
   selector: '[imgFit]'

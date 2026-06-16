@@ -34,8 +34,8 @@ jobs:
       - name: Build Angular adapter
         run: npm run build --workspace=@img-fit/angular
 
-      - name: Publish img-fit
-        run: npm publish --workspace=img-fit --access public --provenance
+      - name: Publish @danilo.riedel/img-fit
+        run: npm publish --workspace=@danilo.riedel/img-fit --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
