@@ -1,6 +1,6 @@
 {
   "name": "@danilo.riedel/img-fit",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A vanilla JS companion for img-fwd that picks the optimal image width for any rendered container.",
   "main": "./src/index.cjs",
   "module": "./src/index.mjs",

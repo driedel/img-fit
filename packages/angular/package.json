@@ -1,6 +1,6 @@
 {
   "name": "@danilo.riedel/img-fit-angular",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Angular adapter for img-fit — automatic width-aware images for img-fwd.",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
