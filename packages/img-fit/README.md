@@ -16,7 +16,7 @@ Instead of hard-coding `?rs=800` in your HTML, add `data-img-fit` and let the br
 ## Installation
 
 ```bash
-npm install img-fit
+npm install @danilo.riedel/img-fit
 ```
 
 ## Quick start
@@ -30,7 +30,7 @@ npm install img-fit
 ### 2. Initialize
 
 ```js
-import ImgFit from 'img-fit';
+import ImgFit from '@danilo.riedel/img-fit';
 
 ImgFit.init();
 ```
@@ -46,19 +46,35 @@ That is it. The library measures the image container, picks a width, and sets:
 You can place `data-img-fit` directly on an `<img>` or on any wrapper element. When used on a wrapper, `img-fit` injects an `<img>` inside it.
 
 ```html
-<!-- Existing image element -->
+<!-- Existing image element with extra CDN parameters -->
+<!-- Result: https://cdn.example.com/photo.jpg?f=webp&q=80&rs=800 -->
 <img
   data-img-fit="https://cdn.example.com/photo.jpg"
   data-img-fit-params="f=webp&q=80"
   alt="Photo"
 />
 
-<!-- Wrapper element -->
+<!-- Wrapper element — img-fit injects an <img> inside -->
 <div
   data-img-fit="https://cdn.example.com/photo.jpg"
   data-img-fit-alt="Photo"
   data-img-fit-params="f=avif"
 ></div>
+
+<!-- Explicit measurement base — measure .card width instead of the img itself -->
+<div class="card">
+  <img
+    data-img-fit="https://cdn.example.com/photo.jpg"
+    data-img-fit-base=".card"
+    alt="Photo"
+  />
+</div>
+
+<!-- Fallback URL when data-img-fit may be empty -->
+<img
+  data-img-fit-fallback="https://cdn.example.com/placeholder.jpg"
+  alt="Photo"
+/>
 ```
 
 ### Data attributes
@@ -86,11 +102,14 @@ ImgFit.init('[data-img-fit]', { dpr: false });
 
 ### `ImgFit.watch(element, options?)`
 
-Watch a single element programmatically.
+Watch a single element programmatically. The `url` option lets you supply the image URL in JavaScript rather than via a `data-img-fit` attribute.
 
 ```js
 const hero = document.querySelector('#hero');
-ImgFit.watch(hero, { url: 'https://cdn.example.com/hero.jpg' });
+ImgFit.watch(hero, {
+  url: 'https://cdn.example.com/hero.jpg',
+  dpr: false
+});
 ```
 
 ### `ImgFit.unwatch(element)`
@@ -148,7 +167,7 @@ Exact container widths would fragment caches, so `img-fit` snaps every value up 
 These helpers are exported if you need them elsewhere:
 
 ```js
-import { snapWidth, applyDpr } from 'img-fit';
+import { snapWidth, applyDpr } from '@danilo.riedel/img-fit';
 
 snapWidth(260); // 260
 snapWidth(265); // 280
@@ -157,12 +176,27 @@ applyDpr(400, 2); // 800
 
 ## Device pixel ratio
 
-By default `dpr: true` multiplies the container width by `window.devicePixelRatio` and re-snaps it, so retina screens receive crisp images without you having to think about it.
+Devices like MacBook Retina, iPhone, and AMOLED phones report a `devicePixelRatio` greater than 1 — they pack 2 or 3 physical pixels into every CSS pixel. By default (`dpr: true`) `img-fit` multiplies the container width by `window.devicePixelRatio` before snapping, so every screen gets a sharp image without any extra config.
 
-Disable it if you prefer to save bandwidth:
+**Concrete examples:**
+
+| Container (CSS px) | DPR | Raw width | After snap | `?rs=` generated |
+|---|---|---|---|---|
+| 560 px | 1× | 560 | 600 | `?rs=600` |
+| 560 px | 2× | 1 120 | 1 250 | `?rs=1250` |
+| 260 px | 2× | 520 | 550 | `?rs=550` |
+| 260 px | 3× | 780 | 800 | `?rs=800` |
+
+To request CSS pixel widths only (disables DPR multiplication):
 
 ```js
 ImgFit.init({ dpr: false });
+```
+
+Or per-element via `watch()`:
+
+```js
+ImgFit.watch(element, { dpr: false });
 ```
 
 ## Lazy loading

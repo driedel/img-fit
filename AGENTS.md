@@ -36,6 +36,7 @@ pgx para v5.7.2`). Tipos comuns: `feat`, `fix`, `chore`, `refactor`, `docs`, `te
 
 ## When modifying code
 
+- `examples/assets/js/` is a verbatim copy of `packages/img-fit/src/`. Any change to one location **must** be applied to the other in the same commit. Files to keep in sync: `img-fit.js`, `snap.js`, `url.js`, `index.mjs`, `index.cjs`.
 - If you change `packages/img-fit/src/img-fit.js`, `packages/img-fit/src/snap.js`, or `packages/img-fit/src/url.js`, update `packages/img-fit/src/index.cjs` to match so both module formats stay in sync.
 - Keep the public API stable: `ImgFit.init()`, `ImgFit.watch()`, `ImgFit.unwatch()`, `ImgFit.getOptimalWidth()`, `ImgFit.buildUrl()`.
 - Do not change the default breakpoint grid without updating the READMEs and the example page.

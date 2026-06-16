@@ -9,10 +9,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300&display=swap" rel="stylesheet" />
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.css" />
+
   <link rel="icon" href="../assets/img/icon-light.svg" media="(prefers-color-scheme: light)" />
   <link rel="icon" href="../assets/img/icon-dark.svg" media="(prefers-color-scheme: dark)" />
 
   <link rel="stylesheet" href="../assets/css/styles.css" />
+
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-markup.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-jsx.min.js"></script>
 </head>
 <body>
   <header class="hero">
@@ -25,8 +33,12 @@
       <div class="badges">
         <span class="badge">Next.js</span>
         <span class="badge">next/image</span>
+        <span class="badge">Retina / DPR</span>
       </div>
       <div class="cta-links">
+        <a href="https://www.npmjs.com/package/@danilo.riedel/img-fit-next" class="btn btn-primary" target="_blank" rel="noopener">
+          <img src="../assets/img/npm.svg" alt="" class="btn-icon" aria-hidden="true" /> View on npm
+        </a>
         <a href="../vanilla/index.html" class="btn btn-secondary">Vanilla Example</a>
         <a href="../index.html" class="btn btn-secondary">All Examples</a>
       </div>
@@ -37,7 +49,13 @@
     <section class="section preview-section">
       <div class="container">
         <h2>Preview</h2>
-        <p class="section-desc">Resize your browser and watch each card request the best width for its container.</p>
+        <p class="section-desc">Example images showing what img-fit serves for typical container sizes. DPR is disabled so sizes are predictable across all screens.</p>
+
+        <p class="preview-notice">
+          <span class="notice-icon" aria-hidden="true">ⓘ</span>
+          DPR scaling is disabled in this demo — <code>?rs=</code> reflects CSS container width directly.
+          In production, <code>ImgFit.init()</code> enables Retina by default.
+        </p>
 
         <div class="preview-row preview-row-2">
           <article class="file-card">
@@ -46,10 +64,8 @@
             </div>
             <div class="file-preview">
               <img
-                data-img-fit="https://img-fwd.driedel.dev/images/photo.jpg"
-                data-img-fit-alt="Coastal landscape"
+                src="https://img-fwd.driedel.dev/images/photo.jpg?rs=600"
                 alt="Coastal landscape"
-                loading="lazy"
               />
             </div>
             <div class="file-sizes">
@@ -58,12 +74,12 @@
                 <span class="file-value">4,813 KB</span>
               </div>
               <div class="file-size-row highlight">
-                <span class="file-label">img fit <code>(auto)</code></span>
+                <span class="file-label">Served</span>
                 <span class="file-value">25.5 KB</span>
               </div>
               <div class="file-size-row">
                 <span class="file-label">URL</span>
-                <code class="file-value url">-</code>
+                <code class="file-value">images/photo.jpg?rs=600</code>
               </div>
             </div>
           </article>
@@ -74,10 +90,8 @@
             </div>
             <div class="file-preview">
               <img
-                data-img-fit="https://img-fwd.driedel.dev/images/portrait.jpg"
-                data-img-fit-alt="Portrait"
+                src="https://img-fwd.driedel.dev/images/portrait.jpg?rs=600"
                 alt="Portrait"
-                loading="lazy"
               />
             </div>
             <div class="file-sizes">
@@ -86,12 +100,12 @@
                 <span class="file-value">3,379 KB</span>
               </div>
               <div class="file-size-row highlight">
-                <span class="file-label">img fit <code>(auto)</code></span>
-                <span class="file-value">8.9 KB</span>
+                <span class="file-label">Served</span>
+                <span class="file-value">8.8 KB</span>
               </div>
               <div class="file-size-row">
                 <span class="file-label">URL</span>
-                <code class="file-value url">-</code>
+                <code class="file-value">images/portrait.jpg?rs=600</code>
               </div>
             </div>
           </article>
@@ -104,10 +118,8 @@
             </div>
             <div class="file-preview">
               <img
-                data-img-fit="https://img-fwd.driedel.dev/images/photo.jpg"
-                data-img-fit-alt="Coastal landscape"
+                src="https://img-fwd.driedel.dev/images/photo.jpg?rs=300"
                 alt="Coastal landscape"
-                loading="lazy"
               />
             </div>
             <div class="file-sizes">
@@ -116,12 +128,12 @@
                 <span class="file-value">4,813 KB</span>
               </div>
               <div class="file-size-row highlight">
-                <span class="file-label">img fit <code>(auto)</code></span>
-                <span class="file-value">8.1 KB</span>
+                <span class="file-label">Served</span>
+                <span class="file-value">7.8 KB</span>
               </div>
               <div class="file-size-row">
                 <span class="file-label">URL</span>
-                <code class="file-value url">-</code>
+                <code class="file-value">images/photo.jpg?rs=300</code>
               </div>
             </div>
           </article>
@@ -132,10 +144,8 @@
             </div>
             <div class="file-preview">
               <img
-                data-img-fit="https://img-fwd.driedel.dev/images/portrait.jpg"
-                data-img-fit-alt="Portrait"
+                src="https://img-fwd.driedel.dev/images/portrait.jpg?rs=300"
                 alt="Portrait"
-                loading="lazy"
               />
             </div>
             <div class="file-sizes">
@@ -144,12 +154,12 @@
                 <span class="file-value">3,379 KB</span>
               </div>
               <div class="file-size-row highlight">
-                <span class="file-label">img fit <code>(auto)</code></span>
-                <span class="file-value">3.9 KB</span>
+                <span class="file-label">Served</span>
+                <span class="file-value">3.8 KB</span>
               </div>
               <div class="file-size-row">
                 <span class="file-label">URL</span>
-                <code class="file-value url">-</code>
+                <code class="file-value">images/portrait.jpg?rs=300</code>
               </div>
             </div>
           </article>
@@ -160,10 +170,8 @@
             </div>
             <div class="file-preview">
               <img
-                data-img-fit="https://img-fwd.driedel.dev/images/photo.jpg"
-                data-img-fit-alt="Coastal landscape"
+                src="https://img-fwd.driedel.dev/images/photo.jpg?rs=300"
                 alt="Coastal landscape"
-                loading="lazy"
               />
             </div>
             <div class="file-sizes">
@@ -172,12 +180,12 @@
                 <span class="file-value">4,813 KB</span>
               </div>
               <div class="file-size-row highlight">
-                <span class="file-label">img fit <code>(auto)</code></span>
-                <span class="file-value">8.1 KB</span>
+                <span class="file-label">Served</span>
+                <span class="file-value">7.8 KB</span>
               </div>
               <div class="file-size-row">
                 <span class="file-label">URL</span>
-                <code class="file-value url">-</code>
+                <code class="file-value">images/photo.jpg?rs=300</code>
               </div>
             </div>
           </article>
@@ -188,10 +196,8 @@
             </div>
             <div class="file-preview">
               <img
-                data-img-fit="https://img-fwd.driedel.dev/images/portrait.jpg"
-                data-img-fit-alt="Portrait"
+                src="https://img-fwd.driedel.dev/images/portrait.jpg?rs=300"
                 alt="Portrait"
-                loading="lazy"
               />
             </div>
             <div class="file-sizes">
@@ -200,12 +206,12 @@
                 <span class="file-value">3,379 KB</span>
               </div>
               <div class="file-size-row highlight">
-                <span class="file-label">img fit <code>(auto)</code></span>
-                <span class="file-value">3.9 KB</span>
+                <span class="file-label">Served</span>
+                <span class="file-value">3.8 KB</span>
               </div>
               <div class="file-size-row">
                 <span class="file-label">URL</span>
-                <code class="file-value url">-</code>
+                <code class="file-value">images/portrait.jpg?rs=300</code>
               </div>
             </div>
           </article>
@@ -221,12 +227,12 @@
         <div class="snippet-grid">
           <div class="snippet-card">
             <h3>Install</h3>
-            <pre class="code-block"><code>npm install @danilo.riedel/img-fit-next</code></pre>
+            <pre class="code-block"><code class="language-bash">npm install @danilo.riedel/img-fit-next</code></pre>
           </div>
 
           <div class="snippet-card">
             <h3>Component</h3>
-            <pre class="code-block"><code>import { ImgFitImage } from '@danilo.riedel/img-fit-next';
+            <pre class="code-block"><code class="language-jsx">import { ImgFitImage } from '@danilo.riedel/img-fit-next';
 
 export default function Page() {
   return (
@@ -234,7 +240,7 @@ export default function Page() {
       &lt;ImgFitImage
         src="https://cdn.example.com/photo.jpg"
         alt="Photo"
-        params="f=webp&q=80"
+        params="f=webp&amp;q=80"
         fill
       /&gt;
     &lt;/div&gt;
@@ -247,13 +253,61 @@ export default function Page() {
 
     <section class="section">
       <div class="container">
+        <h2>Configuration</h2>
+        <p class="section-desc">Pass an <code>options</code> prop to control DPR, debounce, and more. The parent element must always have explicit dimensions when using <code>fill</code>.</p>
+
+        <div class="snippet-grid-3">
+          <div class="snippet-card">
+            <h3>Disable retina</h3>
+            <pre class="code-block"><code class="language-jsx">&lt;ImgFitImage
+  src="https://cdn.example.com/photo.jpg"
+  alt="Photo"
+  options={{ dpr: false }}
+  fill
+/&gt;</code></pre>
+            <p class="snippet-desc">Request CSS pixel widths only — useful for thumbnails or low-bandwidth contexts.</p>
+          </div>
+
+          <div class="snippet-card">
+            <h3>Extra CDN parameters</h3>
+            <pre class="code-block"><code class="language-jsx">&lt;ImgFitImage
+  src="https://cdn.example.com/photo.jpg"
+  alt="Photo"
+  params="f=webp&amp;q=80"
+  fill
+/&gt;
+{/* Result: ?f=webp&q=80&rs=1250 */}</code></pre>
+            <p class="snippet-desc">The <code>params</code> string is appended to the URL before <code>?rs=</code>.</p>
+          </div>
+
+          <div class="snippet-card">
+            <h3>Parent dimensions</h3>
+            <pre class="code-block"><code class="language-jsx">&lt;div style={{
+  position: 'relative',
+  height: '400px'
+}}&gt;
+  &lt;ImgFitImage
+    src="https://cdn.example.com/photo.jpg"
+    alt="Photo"
+    fill
+  /&gt;
+&lt;/div&gt;</code></pre>
+            <p class="snippet-desc">The <code>fill</code> prop requires the parent to have <code>position: relative</code> and explicit dimensions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
         <div class="notes">
           <h2>How it works</h2>
           <ul>
             <li>The component wraps <code>next/image</code> using the <code>fill</code> prop.</li>
             <li>On the client it measures the parent container and builds the optimal URL.</li>
+            <li>Width is multiplied by <code>devicePixelRatio</code> (DPR) before snapping to cache-friendly breakpoints.</li>
             <li>It appends <code>?rs=&lt;width&gt;</code> and passes the result to <code>next/image</code>.</li>
-            <li>SSR stays stable — the URL is updated after hydration.</li>
+            <li>SSR stays stable — the URL is updated after hydration via <code>useEffect</code>.</li>
           </ul>
         </div>
       </div>
@@ -269,25 +323,7 @@ export default function Page() {
   <script type="module">
     import ImgFit from '../assets/js/index.mjs';
 
-    ImgFit.init();
-
-    document.querySelectorAll('[data-img-fit]').forEach((element) => {
-      const valueCell = element.closest('.file-card')?.querySelector('.url');
-      if (!valueCell) return;
-
-      const updateLabel = () => {
-        const img = element.tagName === 'IMG' ? element : element.querySelector('img[data-img-fit-rendered]');
-        if (!img?.src) {
-          valueCell.textContent = '-';
-          return;
-        }
-        const url = new URL(img.src);
-        valueCell.textContent = url.pathname.slice(1) + url.search;
-      };
-
-      updateLabel();
-      new ResizeObserver(updateLabel).observe(element);
-    });
+    ImgFit.init({ dpr: false });
   </script>
 </body>
 </html>

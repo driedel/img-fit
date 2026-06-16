@@ -141,6 +141,16 @@ a:hover {
   text-decoration: none;
 }
 
+/* npm logo icon inside buttons */
+.btn-icon {
+  height: 13px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
 /* Sections */
 .section {
   padding: 80px 0;
@@ -257,6 +267,28 @@ a:hover {
   text-align: right;
 }
 
+/* Preview notice */
+.preview-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  margin: 16px 0 24px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.notice-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
 /* Notes */
 .notes {
   background: var(--bg-secondary);
@@ -269,6 +301,11 @@ a:hover {
   text-align: left;
   margin-bottom: 16px;
   font-size: 1.5rem;
+}
+
+.notes h3 {
+  text-align: left;
+  margin-bottom: 8px;
 }
 
 .notes p {
@@ -302,6 +339,12 @@ code {
   gap: 32px;
 }
 
+.snippet-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
 .snippet-card {
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
@@ -313,6 +356,13 @@ code {
   font-size: 1.1rem;
   margin-bottom: 16px;
   color: var(--text-secondary);
+}
+
+.snippet-desc {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-top: 12px;
+  line-height: 1.5;
 }
 
 .code-block {
@@ -332,6 +382,24 @@ code {
   color: inherit;
   background: transparent;
   padding: 0;
+  border-radius: 0;
+}
+
+/* Prism.js integration — override theme background and typography */
+code[class*="language-"] {
+  background: var(--code-bg);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-shadow: none;
+  padding: 0;
+  border-radius: 0;
+  color: #ccc;
+}
+
+pre[class*="language-"] {
+  background: var(--code-bg);
+  text-shadow: none;
+  margin: 0;
 }
 
 /* Framework cards */
@@ -367,6 +435,116 @@ code {
 .framework-emoji {
   font-size: 4rem;
   line-height: 1;
+}
+
+/* Index page pillars */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.pillar-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+
+.pillar-icon {
+  font-size: 1.75rem;
+  margin-bottom: 12px;
+}
+
+.pillar-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.pillar-card p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Hero snippet (index page) */
+.hero-snippet {
+  max-width: 680px;
+  margin: 32px auto;
+  text-align: left;
+}
+
+.hero-snippet .code-block {
+  font-size: 0.8rem;
+}
+
+.hero-snippet-arrow {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  margin: 6px 0;
+}
+
+.code-block-result {
+  border-color: var(--success);
+}
+
+.hero-snippet-note {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* DPR info box */
+.dpr-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.dpr-info strong {
+  color: var(--text-primary);
+}
+
+/* DPR table */
+.dpr-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  margin-top: 20px;
+}
+
+.dpr-table th {
+  text-align: left;
+  padding: 8px 16px 8px 0;
+  color: var(--text-secondary);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dpr-table td {
+  padding: 8px 16px 8px 0;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.dpr-table tr:last-child td {
+  border-bottom: none;
+}
+
+.dpr-table .rs-col {
+  font-family: var(--font-mono);
+  color: var(--accent);
 }
 
 /* Footer */
@@ -410,11 +588,21 @@ code {
     grid-template-columns: 1fr;
   }
 
-  .snippet-grid {
+  .snippet-grid,
+  .snippet-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .pillars-grid {
     grid-template-columns: 1fr;
   }
 
   .file-value {
     max-width: 60%;
+  }
+
+  .dpr-table th:nth-child(3),
+  .dpr-table td:nth-child(3) {
+    display: none;
   }
 }

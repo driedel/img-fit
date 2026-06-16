@@ -25,7 +25,7 @@ This repository is a monorepo containing the vanilla `img-fit` core and first-pa
 ### Vanilla JS
 
 ```bash
-npm install img-fit
+npm install @danilo.riedel/img-fit
 ```
 
 ```html
@@ -33,8 +33,9 @@ npm install img-fit
 ```
 
 ```js
-import ImgFit from 'img-fit';
+import ImgFit from '@danilo.riedel/img-fit';
 
+// DPR is enabled by default — Retina screens automatically get crisp images
 ImgFit.init();
 ```
 

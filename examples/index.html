@@ -3,28 +3,165 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>img-fit — Examples</title>
+  <title>img-fit — img-fwd Companion</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300&display=swap" rel="stylesheet" />
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism-tomorrow.css" />
+
   <link rel="icon" href="./assets/img/icon-light.svg" media="(prefers-color-scheme: light)" />
   <link rel="icon" href="./assets/img/icon-dark.svg" media="(prefers-color-scheme: dark)" />
 
   <link rel="stylesheet" href="./assets/css/styles.css" />
+
+  <style>
+    .fw-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 24px;
+    }
+
+    .fw-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.3s, border-color 0.2s;
+    }
+
+    .fw-card:hover {
+      box-shadow: var(--shadow);
+      border-color: var(--accent);
+    }
+
+    .fw-card-header {
+      padding: 14px 16px;
+      background: var(--bg-tertiary);
+      border-bottom: 1px solid var(--border-color);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .fw-preview {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 4 / 3;
+      background: var(--bg-primary);
+      padding: 20px;
+    }
+
+    .fw-preview img {
+      max-width: 60px;
+      max-height: 60px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .fw-emoji {
+      font-size: 3rem;
+      line-height: 1;
+    }
+
+    .fw-meta {
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .fw-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+
+    .fw-meta-label {
+      color: var(--text-secondary);
+    }
+
+    .fw-meta-value {
+      font-family: var(--font-mono);
+      color: var(--text-primary);
+      font-size: 0.72rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 65%;
+    }
+
+    .fw-actions {
+      display: flex;
+      gap: 8px;
+      padding: 12px 16px;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .fw-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 7px 10px;
+      border-radius: 8px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.2s;
+      border: 1px solid var(--border-color);
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+    }
+
+    .fw-btn:hover {
+      background: var(--border-color);
+      text-decoration: none;
+    }
+
+    .fw-btn-npm img {
+      height: 11px;
+      width: auto;
+    }
+  </style>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-markup.min.js"></script>
 </head>
 <body>
   <header class="hero">
     <div class="container">
       <img src="./assets/img/logo-dark.svg" alt="img-fit logo" class="logo" />
-      <p class="tagline">Choose a framework to see how img-fit integrates with it.</p>
+      <p class="tagline">Automatic retina-aware images for img-fwd — zero breakpoints, zero config.</p>
       <div class="badges">
-        <span class="badge">Vanilla JS</span>
-        <span class="badge">React</span>
-        <span class="badge">Next.js</span>
-        <span class="badge">Angular</span>
-        <span class="badge">Vue</span>
+        <span class="badge">Zero Dependencies</span>
+        <span class="badge">Retina / DPR</span>
+        <span class="badge">Lazy Loading</span>
+        <span class="badge">ResizeObserver</span>
+      </div>
+
+      <div class="hero-snippet">
+        <pre class="code-block"><code class="language-html">&lt;img data-img-fit="https://cdn.example.com/photo.jpg" alt="Photo" /&gt;</code></pre>
+        <div class="hero-snippet-arrow">↓ on a 640 px container with DPR 2×</div>
+        <pre class="code-block code-block-result"><code>&lt;img src="https://cdn.example.com/photo.jpg?rs=1250" alt="Photo" /&gt;</code></pre>
+        <p class="hero-snippet-note">Container measured at runtime — no breakpoints needed.</p>
+      </div>
+
+      <div class="cta-links">
+        <a href="https://github.com/driedel/img-fit" class="btn btn-primary" target="_blank" rel="noopener">View on GitHub</a>
+        <a href="https://www.npmjs.com/package/@danilo.riedel/img-fit" class="btn btn-secondary" target="_blank" rel="noopener">
+          <img src="./assets/img/npm.svg" alt="" class="btn-icon" aria-hidden="true" /> Package
+        </a>
+        <a href="https://img-fwd.driedel.dev/" class="btn btn-secondary" target="_blank" rel="noopener">What is img-fwd?</a>
       </div>
     </div>
   </header>
@@ -32,79 +169,233 @@
   <main>
     <section class="section">
       <div class="container">
-        <h2>Framework Examples</h2>
-        <p class="section-desc">Static documentation pages showing how to use img-fit in each stack.</p>
+        <h2>Why img-fit?</h2>
+        <p class="section-desc">Stop guessing breakpoints. Start serving the right image for every device and container.</p>
 
-        <div class="preview-row preview-row-4">
-          <a href="./vanilla/index.html" class="file-card framework-card">
-            <div class="file-card-header">
-              <h3>Vanilla JS</h3>
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <div class="pillar-icon">📐</div>
+            <h3>Zero breakpoints</h3>
+            <p>
+              The browser measures the real rendered container width at runtime.
+              No guessing, no hard-coded sizes, no media queries in your JavaScript.
+            </p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon">✨</div>
+            <h3>Retina automatic</h3>
+            <p>
+              Multiplies by <code>devicePixelRatio</code> before snapping, so MacBook Retina,
+              iPhone, and AMOLED screens all get sharp images without a single extra line of code.
+            </p>
+          </div>
+          <div class="pillar-card">
+            <div class="pillar-icon">⚡</div>
+            <h3>Zero dependencies</h3>
+            <p>
+              The vanilla core is under 4 KB. Framework adapters are thin wrappers
+              around the same core — no bundler plugins, no server config.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="notes">
+          <h2>How Sizing Works</h2>
+          <p>
+            img-fit measures the rendered container width and snaps it up to the next cache-friendly breakpoint.
+            Exact widths would fragment CDN caches, so every value is rounded using the following grid:
+          </p>
+          <ul>
+            <li><strong>&lt; 300 px</strong> → rounded to the next <code>20 px</code></li>
+            <li><strong>300 px – 1000 px</strong> → rounded to the next <code>50 px</code></li>
+            <li><strong>&gt; 1000 px</strong> → rounded to the next <code>250 px</code></li>
+          </ul>
+
+          <h3 style="margin-top: 28px; margin-bottom: 8px; font-size: 1.1rem; font-weight: 600;">Retina &amp; High-DPR Screens</h3>
+          <p>
+            Devices like MacBook Retina, iPhone, and AMOLED phones have a <code>devicePixelRatio</code> greater than 1 —
+            they fit 2 or 3 physical pixels into each CSS pixel. img-fit multiplies the container width by that ratio before
+            snapping, so every screen gets a sharp image without extra config.
+          </p>
+
+          <div class="dpr-info">
+            <span>Your screen's pixel density: <strong>DPR = <span id="detected-dpr">…</span></strong></span>
+            <span style="margin-left: auto; font-size: 0.8rem; opacity: 0.7;">via <code>window.devicePixelRatio</code></span>
+          </div>
+
+          <table class="dpr-table">
+            <thead>
+              <tr>
+                <th>Container (CSS px)</th>
+                <th>DPR</th>
+                <th>Raw width</th>
+                <th>After snap</th>
+                <th style="color: var(--accent);">?rs= generated</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>560 px</td>
+                <td>1×</td>
+                <td>560</td>
+                <td>600</td>
+                <td class="rs-col">?rs=600</td>
+              </tr>
+              <tr>
+                <td>560 px</td>
+                <td>2×</td>
+                <td>1 120</td>
+                <td>1 250</td>
+                <td class="rs-col">?rs=1250</td>
+              </tr>
+              <tr>
+                <td>260 px</td>
+                <td>2×</td>
+                <td>520</td>
+                <td>550</td>
+                <td class="rs-col">?rs=550</td>
+              </tr>
+              <tr>
+                <td>260 px</td>
+                <td>3×</td>
+                <td>780</td>
+                <td>800</td>
+                <td class="rs-col">?rs=800</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p style="margin-top: 20px;">To request CSS pixel widths only (no DPR multiplication):</p>
+          <pre class="code-block" style="margin-top: 12px;"><code class="language-javascript">ImgFit.init({ dpr: false });</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Quick Start</h2>
+        <p class="section-desc">Install the package for your framework and add one data attribute.</p>
+
+        <div class="snippet-grid">
+          <div class="snippet-card">
+            <h3>Install</h3>
+            <pre class="code-block"><code class="language-bash">npm install @danilo.riedel/img-fit</code></pre>
+          </div>
+
+          <div class="snippet-card">
+            <h3>Initialize</h3>
+            <pre class="code-block"><code class="language-javascript">import ImgFit from '@danilo.riedel/img-fit';
+
+ImgFit.init();</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Framework Examples</h2>
+        <p class="section-desc">Interactive demos showing img-fit in action. Resize your browser to see the URL update live.</p>
+
+        <div class="fw-grid">
+          <div class="fw-card">
+            <div class="fw-card-header">Vanilla JS</div>
+            <div class="fw-preview">
+              <span class="fw-emoji">⚡</span>
             </div>
-            <div class="framework-preview">
-              <span class="framework-emoji">⚡</span>
-            </div>
-            <div class="file-sizes">
-              <div class="file-size-row">
-                <span class="file-label">No framework</span>
+            <div class="fw-meta">
+              <div class="fw-meta-row">
+                <span class="fw-meta-label">Package</span>
+                <span class="fw-meta-value">@danilo.riedel/img-fit</span>
               </div>
             </div>
-          </a>
-
-          <a href="./react/index.html" class="file-card framework-card">
-            <div class="file-card-header">
-              <h3>React</h3>
+            <div class="fw-actions">
+              <a href="./vanilla/index.html" class="fw-btn">Live demo</a>
+              <a href="https://www.npmjs.com/package/@danilo.riedel/img-fit" class="fw-btn fw-btn-npm" target="_blank" rel="noopener">
+                <img src="./assets/img/npm.svg" alt="npm" />
+              </a>
             </div>
-            <div class="framework-preview">
+          </div>
+
+          <div class="fw-card">
+            <div class="fw-card-header">React</div>
+            <div class="fw-preview">
               <img src="./assets/img/react.svg" alt="React" />
             </div>
-            <div class="file-sizes">
-              <div class="file-size-row">
-                <span class="file-label">Component</span>
+            <div class="fw-meta">
+              <div class="fw-meta-row">
+                <span class="fw-meta-label">Package</span>
+                <span class="fw-meta-value">img-fit-react</span>
               </div>
             </div>
-          </a>
-
-          <a href="./next/index.html" class="file-card framework-card">
-            <div class="file-card-header">
-              <h3>Next.js</h3>
+            <div class="fw-actions">
+              <a href="./react/index.html" class="fw-btn">Live demo</a>
+              <a href="https://www.npmjs.com/package/@danilo.riedel/img-fit-react" class="fw-btn fw-btn-npm" target="_blank" rel="noopener">
+                <img src="./assets/img/npm.svg" alt="npm" />
+              </a>
             </div>
-            <div class="framework-preview">
+          </div>
+
+          <div class="fw-card">
+            <div class="fw-card-header">Next.js</div>
+            <div class="fw-preview">
               <img src="./assets/img/next.svg" alt="Next.js" />
             </div>
-            <div class="file-sizes">
-              <div class="file-size-row">
-                <span class="file-label">next/image</span>
+            <div class="fw-meta">
+              <div class="fw-meta-row">
+                <span class="fw-meta-label">Package</span>
+                <span class="fw-meta-value">img-fit-next</span>
               </div>
             </div>
-          </a>
-
-          <a href="./angular/index.html" class="file-card framework-card">
-            <div class="file-card-header">
-              <h3>Angular</h3>
+            <div class="fw-actions">
+              <a href="./next/index.html" class="fw-btn">Live demo</a>
+              <a href="https://www.npmjs.com/package/@danilo.riedel/img-fit-next" class="fw-btn fw-btn-npm" target="_blank" rel="noopener">
+                <img src="./assets/img/npm.svg" alt="npm" />
+              </a>
             </div>
-            <div class="framework-preview">
+          </div>
+
+          <div class="fw-card">
+            <div class="fw-card-header">Angular</div>
+            <div class="fw-preview">
               <img src="./assets/img/angular.svg" alt="Angular" />
             </div>
-            <div class="file-sizes">
-              <div class="file-size-row">
-                <span class="file-label">Directive</span>
+            <div class="fw-meta">
+              <div class="fw-meta-row">
+                <span class="fw-meta-label">Package</span>
+                <span class="fw-meta-value">img-fit-angular</span>
               </div>
             </div>
-          </a>
-
-          <a href="./vue/index.html" class="file-card framework-card">
-            <div class="file-card-header">
-              <h3>Vue</h3>
+            <div class="fw-actions">
+              <a href="./angular/index.html" class="fw-btn">Live demo</a>
+              <a href="https://www.npmjs.com/package/@danilo.riedel/img-fit-angular" class="fw-btn fw-btn-npm" target="_blank" rel="noopener">
+                <img src="./assets/img/npm.svg" alt="npm" />
+              </a>
             </div>
-            <div class="framework-preview">
+          </div>
+
+          <div class="fw-card">
+            <div class="fw-card-header">Vue</div>
+            <div class="fw-preview">
               <img src="./assets/img/vue.svg" alt="Vue" />
             </div>
-            <div class="file-sizes">
-              <div class="file-size-row">
-                <span class="file-label">Component</span>
+            <div class="fw-meta">
+              <div class="fw-meta-row">
+                <span class="fw-meta-label">Package</span>
+                <span class="fw-meta-value">img-fit-vue</span>
               </div>
             </div>
-          </a>
+            <div class="fw-actions">
+              <a href="./vue/index.html" class="fw-btn">Live demo</a>
+              <a href="https://www.npmjs.com/package/@danilo.riedel/img-fit-vue" class="fw-btn fw-btn-npm" target="_blank" rel="noopener">
+                <img src="./assets/img/npm.svg" alt="npm" />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
