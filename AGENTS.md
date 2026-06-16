@@ -94,7 +94,24 @@ git push origin vX.Y.Z
 
 The tag push triggers `.github/workflows/publish.yml`, which runs tests, builds the Angular adapter, and publishes all five packages to npm.
 
-### 6. Monitor CI
+### 6. Create the GitHub Release
+
+After the tag is pushed, create a GitHub Release so the changelog is visible on the repository:
+
+```bash
+gh release create vX.Y.Z --title "vX.Y.Z" --notes "$(cat <<'EOF'
+## What's Changed
+
+- feat: ...
+- fix: ...
+- chore: ...
+EOF
+)"
+```
+
+Group entries by type (feat, fix, ci, docs, chore). Include any package renames, breaking changes, or migration notes. The release notes are the public-facing changelog — write them for library consumers, not maintainers.
+
+### 7. Monitor CI
 
 Check https://github.com/driedel/img-fit/actions to confirm the workflow succeeds.
 
