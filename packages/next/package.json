@@ -1,6 +1,6 @@
 {
   "name": "@danilo.riedel/img-fit-next",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Next.js adapter for img-fit — automatic width-aware images for img-fwd.",
   "main": "./src/index.js",
   "module": "./src/index.js",
