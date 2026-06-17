@@ -87,11 +87,11 @@ npm install @danilo.riedel/img-fit-vue
 
 See the `examples/` folder for runnable demos:
 
-- [`examples/vanilla`](./examples/vanilla)
-- [`examples/react`](./examples/react)
-- [`examples/vue`](./examples/vue)
-- [`examples/next`](./examples/next)
-- [`examples/angular`](./examples/angular)
+- [`examples/vanilla`](https://img-fit.driedel.dev/vanilla/)
+- [`examples/react`](https://img-fit.driedel.dev/react)
+- [`examples/vue`](https://img-fit.driedel.dev/vue)
+- [`examples/next`](https://img-fit.driedel.dev/next)
+- [`examples/angular`](https://img-fit.driedel.dev/angular)
 
 ## Development
 
