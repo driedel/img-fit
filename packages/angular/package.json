@@ -21,7 +21,7 @@
     "test": "tsc && node --import tsx --test test/*.test.ts"
   },
   "devDependencies": {
-    "@angular/core": "^17.0.0",
+    "@angular/core": "^20.3.25",
     "typescript": "^5.0.0"
   },
   "keywords": [
@@ -46,7 +46,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@angular/compiler": "^17.3.12",
+    "@angular/compiler": "^20.3.27",
     "@angular/platform-browser": "^17.3.12",
     "@angular/platform-browser-dynamic": "^17.3.12",
     "@danilo.riedel/img-fit": "^0.1.3",
