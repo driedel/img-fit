@@ -21,8 +21,16 @@
     "test": "tsc && node --import tsx --test test/*.test.ts"
   },
   "devDependencies": {
-    "@angular/core": "^20.3.25",
-    "typescript": "^5.0.0"
+    "@angular/common": "^20.3.28",
+    "@angular/compiler": "^20.3.28",
+    "@angular/core": "^20.3.28",
+    "@angular/platform-browser": "^20.3.28",
+    "@angular/platform-browser-dynamic": "^20.3.28",
+    "jsdom": "^29.1.1",
+    "reflect-metadata": "^0.2.2",
+    "tsx": "^4.22.4",
+    "typescript": "^5.8.0",
+    "zone.js": "^0.15.0"
   },
   "keywords": [
     "img-fit",
@@ -35,7 +43,8 @@
   "author": "Danilo Riedel",
   "license": "MIT",
   "peerDependencies": {
-    "@angular/core": ">=12.0.0"
+    "@angular/core": ">=19.0.0",
+    "@angular/platform-browser": ">=19.0.0"
   },
   "repository": {
     "type": "git",
@@ -46,13 +55,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@angular/compiler": "^20.3.27",
-    "@angular/platform-browser": "^17.3.12",
-    "@angular/platform-browser-dynamic": "^17.3.12",
-    "@danilo.riedel/img-fit": "^0.1.3",
-    "jsdom": "^29.1.1",
-    "reflect-metadata": "^0.2.2",
-    "tsx": "^4.22.4",
-    "zone.js": "^0.14.10"
+    "@danilo.riedel/img-fit": "^0.2.1"
   }
 }

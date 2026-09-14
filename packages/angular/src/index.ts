@@ -2,7 +2,8 @@ import { Directive, ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
 import ImgFit from '@danilo.riedel/img-fit';
 
 @Directive({
-  selector: '[imgFit]'
+  selector: '[imgFit]',
+  standalone: true
 })
 export class ImgFitDirective implements OnInit, OnDestroy {
   @Input('imgFit') src: string = '';

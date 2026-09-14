@@ -3,7 +3,7 @@ import 'zone.js';
 import 'reflect-metadata';
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
-import { Component, NgModule } from '@angular/core';
+import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { ImgFitDirective } from '../dist/index.js';
@@ -15,21 +15,17 @@ TestBed.initTestEnvironment(
 
 @Component({
   selector: 'app-test',
+  imports: [ImgFitDirective],
   template: '<img [imgFit]="src" alt="Photo">'
 })
 class TestComponent {
   src = 'https://cdn.example.com/photo.jpg';
 }
 
-@NgModule({
-  declarations: [ImgFitDirective, TestComponent]
-})
-class TestModule {}
-
 describe('ImgFit Angular directive', () => {
   it('renders an img with data-img-fit attribute', async () => {
     TestBed.configureTestingModule({
-      imports: [TestModule]
+      imports: [ImgFitDirective, TestComponent]
     });
 
     const fixture = TestBed.createComponent(TestComponent);
