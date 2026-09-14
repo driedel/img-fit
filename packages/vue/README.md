@@ -8,6 +8,8 @@ Vue 3 adapter for [img-fit](https://github.com/driedel/img-fit).
 npm install @danilo.riedel/img-fit-vue
 ```
 
+Requires Vue 3 or later (peer dependency).
+
 ## Usage
 
 ```vue

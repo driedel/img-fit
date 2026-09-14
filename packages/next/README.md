@@ -8,6 +8,8 @@ Next.js adapter for [img-fit](https://github.com/driedel/img-fit).
 npm install @danilo.riedel/img-fit-next
 ```
 
+Requires Next.js 12 or later (peer dependency).
+
 ## Usage
 
 ```jsx

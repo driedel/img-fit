@@ -8,6 +8,8 @@ React adapter for [img-fit](https://github.com/driedel/img-fit).
 npm install @danilo.riedel/img-fit-react
 ```
 
+Requires React 16.8 or later (peer dependency).
+
 ## Usage
 
 ```jsx

@@ -12,13 +12,15 @@ This repository is a monorepo containing the vanilla `img-fit` core and first-pa
 
 ## Packages
 
-| Package | Description |
-|---|---|
-| [`@danilo.riedel/img-fit`](https://www.npmjs.com/package/@danilo.riedel/img-fit) | Vanilla JavaScript core. |
-| [`@danilo.riedel/img-fit-react`](https://www.npmjs.com/package/@danilo.riedel/img-fit-react) | React component adapter. |
-| [`@danilo.riedel/img-fit-next`](https://www.npmjs.com/package/@danilo.riedel/img-fit-next) | Next.js `Image` wrapper. |
-| [`@danilo.riedel/img-fit-angular`](https://www.npmjs.com/package/@danilo.riedel/img-fit-angular) | Angular directive. |
-| [`@danilo.riedel/img-fit-vue`](https://www.npmjs.com/package/@danilo.riedel/img-fit-vue) | Vue component adapter. |
+| Package | Description | Framework support |
+|---|---|---|
+| [`@danilo.riedel/img-fit`](https://www.npmjs.com/package/@danilo.riedel/img-fit) | Vanilla JavaScript core. | Any (dependency-free) |
+| [`@danilo.riedel/img-fit-react`](https://www.npmjs.com/package/@danilo.riedel/img-fit-react) | React component adapter. | React >= 16.8 |
+| [`@danilo.riedel/img-fit-next`](https://www.npmjs.com/package/@danilo.riedel/img-fit-next) | Next.js `Image` wrapper. | Next.js >= 12 |
+| [`@danilo.riedel/img-fit-angular`](https://www.npmjs.com/package/@danilo.riedel/img-fit-angular) | Angular directive. | Angular >= 19 |
+| [`@danilo.riedel/img-fit-vue`](https://www.npmjs.com/package/@danilo.riedel/img-fit-vue) | Vue component adapter. | Vue >= 3 |
+
+Adapters declare their framework as a peer dependency and are tested against React 18, Next.js 16, Angular 20 and Vue 3.
 
 ## Quick start
 
@@ -65,8 +67,10 @@ import { ImgFitImage } from '@danilo.riedel/img-fit-next';
 
 ### Angular
 
+Angular is a peer dependency (requires Angular 19 or later):
+
 ```bash
-npm install @danilo.riedel/img-fit-angular
+npm install @danilo.riedel/img-fit-angular @angular/core @angular/platform-browser
 ```
 
 ```html

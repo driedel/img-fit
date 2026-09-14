@@ -4,8 +4,10 @@ Angular adapter for [img-fit](https://github.com/driedel/img-fit).
 
 ## Installation
 
+The adapter declares Angular as a peer dependency (requires Angular 19 or later):
+
 ```bash
-npm install @danilo.riedel/img-fit-angular
+npm install @danilo.riedel/img-fit-angular @angular/core @angular/platform-browser
 ```
 
 ## Usage
