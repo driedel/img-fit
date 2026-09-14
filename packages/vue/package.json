@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@vue/test-utils": "^2.4.11",
-    "@danilo.riedel/img-fit": "^0.1.3",
+    "@danilo.riedel/img-fit": "^0.2.1",
     "jsdom": "^29.1.1"
   }
 }

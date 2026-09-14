@@ -52,6 +52,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@danilo.riedel/img-fit": "^0.1.3"
+    "@danilo.riedel/img-fit": "^0.2.1"
   }
 }
